@@ -6,20 +6,26 @@ import { AppComponent } from './app.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenubarUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted/menu-unrouted.component';
 import { MenubarModule } from 'primeng/menubar';
+import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted/footer-unrouted.component';
+import { VeterinarioViewRoutedComponent } from './components/veterinario/veterinario-view-routed/veterinario-view-routed/veterinario-view-routed.component';
+import { VeterinarioAjaxService } from './service/veterinario.ajax.service';
 
 @NgModule({
   declarations: [
    AppComponent,
    HomeRoutedComponent,
    MenubarUnroutedComponent,
-   
+   FooterUnroutedComponent,
+   VeterinarioViewRoutedComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
   ],
-  providers: [],
+  providers: [
+    VeterinarioAjaxService, 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
