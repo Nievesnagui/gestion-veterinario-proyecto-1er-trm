@@ -26,6 +26,8 @@ import { VeterinarioFormUnroutedComponent } from './components/veterinario/veter
 import { VeterinairoDetailUnroutedComponent } from './components/veterinario/veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -53,11 +55,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginatorModule,
     ReactiveFormsModule,
     MatInputModule,
+    HttpClientModule,
   ],
   providers: [
     VeterinarioAjaxService, 
     MatSnackBar, 
     MatFormFieldModule,
+    DialogService,
   ],
   bootstrap: [AppComponent]
 })

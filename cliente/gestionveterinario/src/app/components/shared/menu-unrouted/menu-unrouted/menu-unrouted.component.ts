@@ -66,16 +66,18 @@ export class MenubarUnroutedComponent implements OnInit {
                 ]
             },
             {
-                label: 'Users',
+                label: 'Vets',
                 icon: 'pi pi-fw pi-user',
                 items: [
                     {
                         label: 'New',
-                        icon: 'pi pi-fw pi-user-plus'
+                        icon: 'pi pi-fw pi-user-plus',
+                        routerLink: 'veterinario/new'
                     },
                     {
                         label: 'Delete',
                         icon: 'pi pi-fw pi-user-minus'
+                       // routerLink: 'veterinario/edit/:id'
                     },
                     {
                         label: 'Search',
@@ -93,7 +95,8 @@ export class MenubarUnroutedComponent implements OnInit {
                             },
                             {
                                 icon: 'pi pi-fw pi-bars',
-                                label: 'List'
+                                label: 'List',
+                                routerLink: 'veterinario/plist'
                             }
                         ]
                     }

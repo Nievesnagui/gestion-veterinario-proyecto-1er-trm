@@ -55,7 +55,28 @@
             <mat-error *ngIf="hasError('username', 'pattern')">Characters not accepted</mat-error>
           </mat-form-field>
         </div>
-
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>DNI:</mat-label>
+            <input matInput formControlName="dni" placeholder="DNI" required>
+            <mat-hint align="end">(8 to 20 alphanumeric)</mat-hint>
+            <mat-error *ngIf="hasError('dni', 'required')">DNI is required</mat-error>
+            <mat-error *ngIf="hasError('dni', 'minlength')">More length is required</mat-error>
+            <mat-error *ngIf="hasError('dni', 'maxlength')">Limit exceed</mat-error>
+            <mat-error *ngIf="hasError('dni', 'pattern')">Characters not accepted</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Phone:</mat-label>
+            <input matInput formControlName="phone" placeholder="Phone" required>
+            <mat-hint align="end">(8 to 20 alphanumeric)</mat-hint>
+            <mat-error *ngIf="hasError('phone', 'required')">Phone is required</mat-error>
+            <mat-error *ngIf="hasError('phone', 'minlength')">More length is required</mat-error>
+            <mat-error *ngIf="hasError('phone', 'maxlength')">Limit exceed</mat-error>
+            <mat-error *ngIf="hasError('phone', 'pattern')">Characters not accepted</mat-error>
+          </mat-form-field>
+        </div>
         <mat-radio-group aria-label="Type of user" formControlName="role" required>
           <mat-radio-button [value]="true">Admin</mat-radio-button>
           <mat-radio-button [value]="false">User</mat-radio-button>
@@ -63,7 +84,7 @@
         </mat-radio-group>
 
         <div class="text-center mt-5">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!veterinarioForm.valid">Save User</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!veterinarioForm.valid">Save Vet</button>
         </div>
 
       </form>

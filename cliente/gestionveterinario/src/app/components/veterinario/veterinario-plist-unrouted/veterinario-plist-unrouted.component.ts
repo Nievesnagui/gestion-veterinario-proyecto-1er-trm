@@ -6,6 +6,7 @@ import { PaginatorState } from 'primeng/paginator';
 import { IVeterinario, IVeterinarioPage } from 'src/app/model/model.interfaces';
 import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { VeterinairoDetailUnroutedComponent } from '../veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
 
 @Component({
   selector: 'app-veterinario-plist-unrouted',
@@ -64,7 +65,7 @@ export class VeterinarioPlistUnroutedComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   doView(u: IVeterinario) {
-    this.ref = this.oDialogService.open(VeterinarioDetailUnroutedComponent, {
+    this.ref = this.oDialogService.open(VeterinairoDetailUnroutedComponent, {
       data: {
         id: u.id
       },
