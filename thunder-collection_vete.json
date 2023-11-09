@@ -1,0 +1,114 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "vete",
+    "dateExported": "2023-11-09T08:49:52.740Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "3bfadc96-72e6-4e99-87ff-14df0d8e2a6d",
+            "colId": "2ddc05d3-efd5-4d1d-8fe3-4ce78f5207ea",
+            "containerId": "",
+            "name": "http://localhost:8083/veterinario",
+            "url": "http://localhost:8083/veterinario",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-09T08:43:06.295Z",
+            "modified": "2023-11-09T08:43:06.295Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Pepe\",\n  \"surname\":\"Potato\",\n  \"email\":\"correo@mail.com\",\n  \"username\":\"pepetato\",\n  \"role\":false,\n  \"dni\":\"12345678P\",\n  \"phone\":\"654987412\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "61f5b47a-6036-496d-a04e-0152746bd184",
+            "colId": "2ddc05d3-efd5-4d1d-8fe3-4ce78f5207ea",
+            "containerId": "",
+            "name": "http://localhost:8083/veterinario/1",
+            "url": "http://localhost:8083/veterinario/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-09T08:43:32.057Z",
+            "modified": "2023-11-09T08:43:51.818Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "db835ff6-7eb9-4f0b-aab7-13231c02cddb",
+            "colId": "2ddc05d3-efd5-4d1d-8fe3-4ce78f5207ea",
+            "containerId": "",
+            "name": "http://localhost:8083/veterinario",
+            "url": "http://localhost:8083/veterinario",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-11-09T08:44:34.466Z",
+            "modified": "2023-11-09T08:46:24.853Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":4,\n \"name\":\"Pepe\",\n  \"surname\":\"Madaleno\",\n  \"email\":\"correo@mail.com\",\n  \"username\":\"pepeleno\",\n  \"role\":true,\n  \"dni\":\"12345678P\",\n  \"phone\":\"654987412\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ac4c909c-b595-44ad-a972-6b79155d62dc",
+            "colId": "2ddc05d3-efd5-4d1d-8fe3-4ce78f5207ea",
+            "containerId": "",
+            "name": "http://localhost:8083/veterinario/5",
+            "url": "http://localhost:8083/veterinario/5",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-11-09T08:47:23.575Z",
+            "modified": "2023-11-09T08:47:50.651Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c71222e3-c0d8-4cfa-895a-ecb773086ddf",
+            "colId": "2ddc05d3-efd5-4d1d-8fe3-4ce78f5207ea",
+            "containerId": "",
+            "name": "http://localhost:8083/veterinario?page=1&size=2 Copy",
+            "url": "http://localhost:8083/veterinario?page=0&size=2",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-11-09T08:48:29.983Z",
+            "modified": "2023-11-09T08:48:42.097Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "0",
+                    "isPath": false
+                },
+                {
+                    "name": "size",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "bc500165-f859-4b05-a2d2-67060b997cf9",
+            "colId": "2ddc05d3-efd5-4d1d-8fe3-4ce78f5207ea",
+            "containerId": "",
+            "name": "http://localhost:8083/veterinario/populate/2 ",
+            "url": "http://localhost:8083/veterinario/populate/2",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-11-09T08:49:06.470Z",
+            "modified": "2023-11-09T08:49:29.943Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

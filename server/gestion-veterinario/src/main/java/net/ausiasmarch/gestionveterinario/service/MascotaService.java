@@ -31,7 +31,6 @@ public class MascotaService {
         oMascotaEntityAux.setName(oMascotaEntity.getName());
         oMascotaEntityAux.setChip(oMascotaEntity.getChip());
         oMascotaEntityAux.setPropietario(oMascotaEntity.getPropietario());
-        oMascotaEntityAux.setUsername(oMascotaEntity.getUsername());
         oMascotaEntityAux.setPhone(oMascotaEntity.getPhone());
         oMascotaEntityAux.setEmail(oMascotaEntity.getEmail());
 
@@ -57,7 +56,7 @@ public class MascotaService {
         for (int i = 0; i < amount; i++) {
             String phone="123465789";
             oMascotaRepository.save(
-                    new MascotaEntity("name" + i, 1234568, "propietario " + i, "username" + i, phone, "mail@mail.com"));
+                    new MascotaEntity("name" + i, 1234568, "propietario " + i, phone, "mail@mail.com"));
         }
         return oMascotaRepository.count();
     }

@@ -38,9 +38,6 @@ public class MascotaEntity {
     @Size(min = 3, max = 255)
     private String propietario;
 
-    @NotNull
-    @Size(min = 6, max = 255)
-    private String username;
 
     @NotNull
     @NotBlank
@@ -56,13 +53,11 @@ public class MascotaEntity {
     public MascotaEntity(@NotBlank @NotNull @Size(min = 3, max = 255) String name,
             @Min(value = 1, message = "El valor debe ser mayor o igual a 1") @Max(value = 2147483647, message = "El valor debe ser menor o igual a 2147483647") Integer chip,
             @NotBlank @NotNull @Size(min = 3, max = 255) String propietario,
-            @NotNull @Size(min = 6, max = 255) String username,
             @NotNull @NotBlank @Size(min = 8, max = 20) @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal") String phone,
             @Email String email) {
         this.name = name;
         this.chip = chip;
         this.propietario = propietario;
-        this.username = username;
         this.phone = phone;
         this.email = email;
     }
@@ -70,14 +65,12 @@ public class MascotaEntity {
     public MascotaEntity(Long id, @NotBlank @NotNull @Size(min = 3, max = 255) String name,
             @Min(value = 1, message = "El valor debe ser mayor o igual a 1") @Max(value = 2147483647, message = "El valor debe ser menor o igual a 2147483647") Integer chip,
             @NotBlank @NotNull @Size(min = 3, max = 255) String propietario,
-            @NotNull @Size(min = 6, max = 255) String username,
             @NotNull @NotBlank @Size(min = 8, max = 20) @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal") String phone,
              @Email String email) {
         this.id = id;
         this.name = name;
         this.chip = chip;
         this.propietario = propietario;
-        this.username = username;
         this.phone = phone;
         this.email = email;
     }
@@ -118,14 +111,6 @@ public class MascotaEntity {
 
     public void setChip(Integer chip) {
         this.chip = chip;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPhone() {
