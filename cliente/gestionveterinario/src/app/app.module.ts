@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 //--
-//import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 //--
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +19,13 @@ import { VeterinarioViewRoutedComponent } from './components/veterinario/veterin
 import { VeterinarioSelectionUnroutedComponent } from './components/veterinario/veterinario-selection-unrouted/veterinario-selection-unrouted.component';
 import { VeterinarioPlistRoutedComponent } from './components/veterinario/veterinario-plist-routed/veterinario-plist-routed.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VeterinarioNewRoutedComponent } from './components/veterinario/veterinario-new-routed/veterinario-new-routed.component';
+import { VeterinarioEditRoutedComponent } from './components/veterinario/veterinario-edit-routed/veterinario-edit-routed.component';
+import { VeterinarioPlistUnroutedComponent } from './components/veterinario/veterinario-plist-unrouted/veterinario-plist-unrouted.component';
+import { VeterinarioFormUnroutedComponent } from './components/veterinario/veterinario-form-unrouted/veterinario-form-unrouted.component';
+import { VeterinairoDetailUnroutedComponent } from './components/veterinario/veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
+import { PaginatorModule } from 'primeng/paginator';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,10 +33,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    HomeRoutedComponent,
    MenubarUnroutedComponent,
    FooterUnroutedComponent,
-   VeterinarioViewRoutedComponent,
-    //
+    //--
+    VeterinarioViewRoutedComponent,
     VeterinarioPlistRoutedComponent,
+    VeterinarioPlistUnroutedComponent,
     VeterinarioSelectionUnroutedComponent,
+    VeterinarioNewRoutedComponent,
+    VeterinarioEditRoutedComponent,
+    VeterinarioFormUnroutedComponent,
+    VeterinairoDetailUnroutedComponent,
 
   ],
   imports: [
@@ -34,10 +49,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     MenubarModule,
     BrowserAnimationsModule,
+    MatRadioModule,
+    PaginatorModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
   providers: [
     VeterinarioAjaxService, 
-    //MatSnackBar, 
+    MatSnackBar, 
+    MatFormFieldModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -55,8 +55,8 @@
               <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
               <button class="btn btn-warning" [routerLink]="['veterinario','edit',u.id]"><i
                   class="pi pi-pencil"></i></button>
-              <button *ngIf="u.threads==0 && u.replies==0" class="btn btn-danger" (click)="doRemove(u)"><i
-                  class="pi pi-trash"></i></button>
+              <!-- <button *ngIf="u.citas==0 " class="btn btn-danger" (click)="doRemove(u)"><i
+                  class="pi pi-trash"></i></button> --> Por gestionar
             </div>
           </td>
         </tr>
