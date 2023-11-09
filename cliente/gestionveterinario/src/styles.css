@@ -6,6 +6,7 @@
 
 /* Para PrimeIcons */
 @import "~primeicons/primeicons.css";
+@import "primeng/resources/primeng.css";
 
 @import 'primeng/resources/themes/saga-blue/theme.css';
 @import 'primeng/resources/primeng.min.css';
@@ -31,3 +32,5 @@ table tr td a {
     text-decoration: none;
     font-size: larger;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

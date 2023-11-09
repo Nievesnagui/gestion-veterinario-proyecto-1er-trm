@@ -31,12 +31,12 @@ export class VeterinarioAjaxService {
         }
     }
 
-    newOne(oUser: IVeterinario): Observable<IVeterinario> {
-        return this.oHttpClient.post<IVeterinario>(this.sUrl, oUser);
+    newOne(oVeterinario: IVeterinario): Observable<IVeterinario> {
+        return this.oHttpClient.post<IVeterinario>(this.sUrl, oVeterinario);
     }
 
-    updateOne(oUser: IVeterinario): Observable<IVeterinario> {
-        return this.oHttpClient.put<IVeterinario>(this.sUrl, oUser);
+    updateOne(oVeterinario: IVeterinario): Observable<IVeterinario> {
+        return this.oHttpClient.put<IVeterinario>(this.sUrl, oVeterinario);
     }
 
     generateRandom(amount: number): Observable<number> {
