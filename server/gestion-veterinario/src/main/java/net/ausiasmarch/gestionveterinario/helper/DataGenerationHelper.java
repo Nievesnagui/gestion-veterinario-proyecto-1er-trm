@@ -29,7 +29,7 @@ public class DataGenerationHelper {
 
     private static String[] mascota = { "Bollito", "Jaboncillo", "Magdaleno", "Albaricoque", "Michuelo", "Miaumilton" };
 
-    public static String getRadoMascota() {
+    public static String getRadomMascota() {
         return mascota[(int) (Math.random() * mascota.length)];
     }
 }
