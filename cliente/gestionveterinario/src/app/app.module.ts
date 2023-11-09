@@ -7,8 +7,8 @@ import { HomeRoutedComponent } from './components/shared/home-routed/home-routed
 import { MenubarUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted/menu-unrouted.component';
 import { MenubarModule } from 'primeng/menubar';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted/footer-unrouted.component';
-import { VeterinarioViewRoutedComponent } from './components/veterinario/veterinario-view-routed/veterinario-view-routed/veterinario-view-routed.component';
 import { VeterinarioAjaxService } from './service/veterinario.ajax.service';
+import { VeterinarioViewRoutedComponent } from './components/veterinario/veterinario-view-routed/veterinario-view-routed.component';
 
 @NgModule({
   declarations: [

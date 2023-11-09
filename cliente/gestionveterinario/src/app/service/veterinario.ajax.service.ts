@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IUser, IUserPage } from '../model/model.interfaces';
+import { IVeterinario, IVeterinarioPage } from '../model/model.interfaces';
 import { API_URL } from 'src/environment/environment';
 
 @Injectable()
@@ -13,14 +13,14 @@ export class VeterinarioAjaxService {
         private oHttpClient: HttpClient
     ) { }
 
-    getOne(id: number): Observable<IUser> {
-        return this.oHttpClient.get<IUser>(this.sUrl + "/" + id);
+    getOne(id: number): Observable<IVeterinario> {
+        return this.oHttpClient.get<IVeterinario>(this.sUrl + "/" + id);
     }
 
-    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IUserPage> {
+    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IVeterinarioPage> {
         if (!size) size = 10;
         if (!page) page = 0;
-        return this.oHttpClient.get<IUserPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
+        return this.oHttpClient.get<IVeterinarioPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
 
     removeOne(id: number | undefined): Observable<number> {
@@ -31,12 +31,12 @@ export class VeterinarioAjaxService {
         }
     }
 
-    newOne(oUser: IUser): Observable<IUser> {
-        return this.oHttpClient.post<IUser>(this.sUrl, oUser);
+    newOne(oUser: IVeterinario): Observable<IVeterinario> {
+        return this.oHttpClient.post<IVeterinario>(this.sUrl, oUser);
     }
 
-    updateOne(oUser: IUser): Observable<IUser> {
-        return this.oHttpClient.put<IUser>(this.sUrl, oUser);
+    updateOne(oUser: IVeterinario): Observable<IVeterinario> {
+        return this.oHttpClient.put<IVeterinario>(this.sUrl, oUser);
     }
 
     generateRandom(amount: number): Observable<number> {

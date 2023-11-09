@@ -40,23 +40,22 @@ export interface IEntity {
     id: number,
 }
 
-export interface IUser extends IEntity {
+export interface IVeterinario extends IEntity {
     name: string,
     surname: string,
-    lastname: string,
-    email: string,
+    email: string,    
     username: string,
-    role: boolean,
-    threads: number,
-    replies: number
+    dni: string,
+    phone: string,
+    role: boolean
 }
 
-export interface IUserPage extends IPage<IUser> {
+export interface IVeterinarioPage extends IPage<IVeterinario> {
 }
-
+/*
 export interface IThread extends IEntity {
     title: string,
-    user: IUser,
+    user: IVeterinario,
     replies: number
 }
 
@@ -66,13 +65,13 @@ export interface IThreadPage extends IPage<IThread> {
 export interface IReply extends IEntity {
     title: string,
     body: string,
-    user: IUser,
+    user: IVeterinario,
     thread: IThread
 }
 
 export interface IReplyPage extends IPage<IReply> {
 }
-
+*/
 export type formOperation = 'EDIT' | 'NEW';
 
 export interface SessionEvent {
