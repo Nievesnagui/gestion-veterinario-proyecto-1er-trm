@@ -1,0 +1,114 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "mascota",
+    "dateExported": "2023-11-09T08:55:17.377Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "aa7b1f2e-5122-4ed5-9903-4af9c438c3c1",
+            "colId": "bee989d9-9be5-4fcb-a027-52780d02cd70",
+            "containerId": "",
+            "name": "http://localhost:8083/mascota",
+            "url": "http://localhost:8083/mascota",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-09T08:51:27.781Z",
+            "modified": "2023-11-09T08:52:39.663Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Bollito\",\n  \"chip\":\"12345679\",\n  \"propietario\":\"Juan\",\n  \"phone\":\"654987412\",\n  \"email\": \"correo@mail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cd11379b-57d6-44da-8c40-2521c4b21d7b",
+            "colId": "bee989d9-9be5-4fcb-a027-52780d02cd70",
+            "containerId": "",
+            "name": "http://localhost:8083/mascota/1",
+            "url": "http://localhost:8083/mascota/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-09T08:51:27.782Z",
+            "modified": "2023-11-09T08:53:05.617Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bccb615e-e42d-4180-aa4a-635c3900541a",
+            "colId": "bee989d9-9be5-4fcb-a027-52780d02cd70",
+            "containerId": "",
+            "name": "http://localhost:8083/mascota",
+            "url": "http://localhost:8083/mascota",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-11-09T08:51:27.783Z",
+            "modified": "2023-11-09T08:53:55.242Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":1,\n  \"name\":\"Bollito\",\n  \"chip\":\"12345679\",\n  \"propietario\":\"Nieves\",\n  \"phone\":\"654987412\",\n  \"email\": \"correo@mail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6a4a47dd-9eff-4aeb-a28d-a43bee4ce284",
+            "colId": "bee989d9-9be5-4fcb-a027-52780d02cd70",
+            "containerId": "",
+            "name": "http://localhost:8083/mascota/3",
+            "url": "http://localhost:8083/mascota/3",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-11-09T08:51:27.784Z",
+            "modified": "2023-11-09T08:54:59.546Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "570e8fd4-d827-4a7f-80f6-982a9102bf44",
+            "colId": "bee989d9-9be5-4fcb-a027-52780d02cd70",
+            "containerId": "",
+            "name": "http://localhost:8083/mascota?page=1&size=2 Copy",
+            "url": "http://localhost:8083/mascota?page=0&size=2",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-11-09T08:51:27.785Z",
+            "modified": "2023-11-09T08:54:14.328Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "0",
+                    "isPath": false
+                },
+                {
+                    "name": "size",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "c629e54b-3dd0-428d-87db-f7637b2b993f",
+            "colId": "bee989d9-9be5-4fcb-a027-52780d02cd70",
+            "containerId": "",
+            "name": "http://localhost:8083/mascota/populate/2 ",
+            "url": "http://localhost:8083/mascota/populate/2",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-11-09T08:51:27.786Z",
+            "modified": "2023-11-09T08:54:30.952Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
