@@ -32,7 +32,7 @@ export class VeterinarioAjaxService {
     }
 
     newOne(oVeterinario: IVeterinario): Observable<IVeterinario> {
-        return this.oHttpClient.post<IVeterinario>(this.sUrl, oVeterinario);
+        return this.oHttpClient.post<IVeterinario>(this.sUrl, + oVeterinario);
     }
 
     updateOne(oVeterinario: IVeterinario): Observable<IVeterinario> {

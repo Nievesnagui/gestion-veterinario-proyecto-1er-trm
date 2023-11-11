@@ -28,7 +28,7 @@
           <th (click)="doOrder('username')">Username</th>
           <th (click)="doOrder('dni')">DNI</th>
           <th (click)="doOrder('phone')">Phone</th>
-          <th (click)="doOrder('role')">Role</th>
+          <th >Role</th>
           <th>Citas</th>
         </tr>
       </thead>
@@ -46,17 +46,17 @@
             <span *ngIf="u.role==false">User</span>
           </td>
           <td class="text-center">
-          <!-- {{u.citas}}  --> Por gestionar
+         {{u.citas}} 
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button class="btn btn-primary" [routerLink]="['veterinario','view',u.id]"><i
+              <button class="btn btn-primary" [routerLink]="['/veterinario','view',u.id]"><i
                   class="pi pi-eye"></i></button>
               <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="btn btn-warning" [routerLink]="['veterinario','edit',u.id]"><i
+              <button class="btn btn-warning" [routerLink]="['/veterinario','edit',u.id]"><i
                   class="pi pi-pencil"></i></button>
-              <!-- <button *ngIf="u.citas==0 " class="btn btn-danger" (click)="doRemove(u)"><i
-                  class="pi pi-trash"></i></button> --> Por gestionar
+              <button *ngIf="u.citas==0" class="btn btn-danger" (click)="doRemove(u)"><i
+                  class="pi pi-trash"></i></button> 
             </div>
           </td>
         </tr>

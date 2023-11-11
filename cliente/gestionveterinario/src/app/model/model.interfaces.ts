@@ -47,7 +47,8 @@ export interface IVeterinario extends IEntity {
     username: string,
     dni: string,
     phone: string,
-    role: boolean
+    role: boolean,
+    citas: number
 }
 
 export interface IVeterinarioPage extends IPage<IVeterinario> {

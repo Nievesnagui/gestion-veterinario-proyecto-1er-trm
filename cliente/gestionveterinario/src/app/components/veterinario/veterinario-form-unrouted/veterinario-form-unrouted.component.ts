@@ -70,8 +70,10 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
             this.oVeterinario = data;
             this.initializeForm(this.oVeterinario);
             // avisar al usuario que se ha creado correctamente
+            console.log('Datos a enviar:', this.veterinarioForm.value);
             this.oMatSnackBar.open("Vet has been created.", '', { duration: 2000 });
-            this.oRouter.navigate([ 'veterinario', 'view', this.oVeterinario]);
+            this.oRouter.navigate([ '/veterinario', 'view', this.oVeterinario]);
+            
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -86,7 +88,7 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
             this.initializeForm(this.oVeterinario);
             // avisar al usuario que se ha actualizado correctamente
             this.oMatSnackBar.open("Vet has been updated.", '', { duration: 2000 });
-            this.oRouter.navigate(['veterinario', 'view', this.oVeterinario.id]);
+            this.oRouter.navigate(['/veterinario', 'view', this.oVeterinario.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

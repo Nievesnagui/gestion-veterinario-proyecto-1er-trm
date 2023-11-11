@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 
 @Component({
   selector: 'app-veterinario-view-routed',

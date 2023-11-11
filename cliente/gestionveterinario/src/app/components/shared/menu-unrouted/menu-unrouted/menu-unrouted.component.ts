@@ -13,57 +13,9 @@ export class MenubarUnroutedComponent implements OnInit {
     ngOnInit() {
         this.items = [
             {
-                label: 'File',
-                icon: 'pi pi-fw pi-file',
-                items: [
-                    {
-                        label: 'New',
-                        icon: 'pi pi-fw pi-plus',
-                        items: [
-                            {
-                                label: 'Bookmark',
-                                icon: 'pi pi-fw pi-bookmark'
-                            },
-                            {
-                                label: 'Video',
-                                icon: 'pi pi-fw pi-video'
-                            }
-                        ]
-                    },
-                    {
-                        label: 'Delete',
-                        icon: 'pi pi-fw pi-trash'
-                    },
-                    {
-                        separator: true
-                    },
-                    {
-                        label: 'Export',
-                        icon: 'pi pi-fw pi-external-link'
-                    }
-                ]
-            },
-            {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
-                items: [
-                    {
-                        label: 'Left',
-                        icon: 'pi pi-fw pi-align-left'
-                    },
-                    {
-                        label: 'Right',
-                        icon: 'pi pi-fw pi-align-right'
-                    },
-                    {
-                        label: 'Center',
-                        icon: 'pi pi-fw pi-align-center'
-                    },
-                    {
-                        label: 'Justify',
-                        icon: 'pi pi-fw pi-align-justify'
-                    }
-                ]
+                label: 'Home', //Por hacer
+                icon: 'pi pi-fw pi-home',
+                routerLink: 'home'
             },
             {
                 label: 'Vets',
@@ -75,65 +27,46 @@ export class MenubarUnroutedComponent implements OnInit {
                         routerLink: 'veterinario/new'
                     },
                     {
-                        label: 'Delete',
-                        icon: 'pi pi-fw pi-user-minus'
-                       // routerLink: 'veterinario/edit/:id'
-                    },
-                    {
-                        label: 'Search',
-                        icon: 'pi pi-fw pi-users',
-                        items: [
-                            {
-                                label: 'Filter',
-                                icon: 'pi pi-fw pi-filter',
-                                items: [
-                                    {
-                                        label: 'Print',
-                                        icon: 'pi pi-fw pi-print'
-                                    }
-                                ]
-                            },
-                            {
-                                icon: 'pi pi-fw pi-bars',
-                                label: 'List',
-                                routerLink: 'veterinario/plist'
-                            }
-                        ]
+                        label: 'List',
+                        icon: 'pi pi-fw pi-bars',
+                        routerLink: 'veterinario/plist'
                     }
                 ]
             },
             {
-                label: 'Events',
-                icon: 'pi pi-fw pi-calendar',
+                label: 'Pets',
+                icon: 'pi pi-fw pi-heart',
                 items: [
                     {
-                        label: 'Edit',
-                        icon: 'pi pi-fw pi-pencil',
-                        items: [
-                            {
-                                label: 'Save',
-                                icon: 'pi pi-fw pi-calendar-plus'
-                            },
-                            {
-                                label: 'Delete',
-                                icon: 'pi pi-fw pi-calendar-minus'
-                            }
-                        ]
+                        label: 'New',
+                        icon: 'pi pi-fw pi-plus-circle',
+                        routerLink: 'mascota/new'
                     },
                     {
-                        label: 'Archieve',
-                        icon: 'pi pi-fw pi-calendar-times',
-                        items: [
-                            {
-                                label: 'Remove',
-                                icon: 'pi pi-fw pi-calendar-minus'
-                            }
-                        ]
+                        label: 'List',
+                        icon: 'pi pi-fw pi-bars',
+                        routerLink: 'mascota/plist'
                     }
                 ]
             },
             {
-                label: 'Quit',
+                label: 'Appointments',
+                icon: 'pi pi-fw pi-file',
+                items: [
+                    {
+                        label: 'New',
+                        icon: 'pi pi-fw pi-plus-circle',
+                        routerLink: 'cita/new'
+                    },
+                    {
+                        label: 'List',
+                        icon: 'pi pi-fw pi-bars',
+                        routerLink: 'cita/plist'
+                    }
+                ]
+            },
+            {
+                label: 'Quit', //Por gestionar
                 icon: 'pi pi-fw pi-power-off'
             }
         ];

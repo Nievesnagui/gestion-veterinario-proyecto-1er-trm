@@ -42,7 +42,7 @@ public class VeterinarioEntity {
     @Size(min = 6, max = 255)
     private String username;
 
-    private Boolean rol =false;
+    private Boolean role =false;
 
     // Para no poder leer la contraseña
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -71,7 +71,7 @@ public class VeterinarioEntity {
             @NotNull @NotBlank @Size(min = 20, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password,
             @NotBlank @NotNull @Size(min = 6, max = 255) String dni,
             @NotNull @NotBlank @Size(min = 8, max = 20) @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal") String phone,
-            Boolean rol) {
+            Boolean role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -79,7 +79,7 @@ public class VeterinarioEntity {
         this.password = password;
         this.dni = dni;
         this.phone = phone;
-        this.rol = rol;
+        this.role = role;
     }
 
     @NotNull
@@ -174,12 +174,12 @@ public class VeterinarioEntity {
         this.phone = phone;
     }
 
-    public Boolean getRol() {
-        return rol;
+    public Boolean getRole() {
+        return role;
     }
 
-    public void setRol(Boolean rol) {
-        this.rol = rol;
+    public void setRole(Boolean role) {
+        this.role = role;
     }
 
     public int getCitas() {

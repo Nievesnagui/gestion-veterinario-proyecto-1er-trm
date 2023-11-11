@@ -28,6 +28,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     MatSnackBar, 
     MatFormFieldModule,
     DialogService,
+    ConfirmationService,
   ],
   bootstrap: [AppComponent]
 })
