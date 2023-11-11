@@ -1,0 +1,39 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+      <div class="alert alert-danger" role="alert">
+          {{status!.error.message}} - {{status!.message}}
+      </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <table class="table table-striped table-hover">
+      <tbody>
+          <tr>
+              <th>Property</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <th>id</th>
+              <td>{{oCita.id}}</td>
+          </tr>
+          <tr>
+              <th>Date</th>
+              <td>{{oCita.fecha}}</td>
+          </tr>
+          <tr>
+              <th>Time</th>
+              <td>{{oCita.hora}}</td>
+          </tr>
+          <tr>
+              <th>Vet</th>
+              <td> <a [routerLink]="['/admin','veterinario','view',oCita.vet.id]">{{oCita.vet.name}}
+                      {{oCita.vet.surname}}</a></td>
+          </tr>
+          <tr>
+              <th>Pet</th>
+              <td> <a [routerLink]="['/admin','mascota','view',oCita.pet.id]">{{oCita.pet.name}}</a> </td>
+          </tr>
+      </tbody>
+  </table>
+</div>

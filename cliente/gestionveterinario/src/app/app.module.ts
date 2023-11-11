@@ -40,6 +40,14 @@ import { MascotaNewRoutedComponent } from './components/mascota/mascota-new-rout
 import { MascotaFormUnroutedComponent } from './components/mascota/mascota-form-unrouted/mascota-form-unrouted.component';
 import { MascotaEditRoutedComponent } from './components/mascota/mascota-edit-routed/mascota-edit-routed.component';
 import { MascotaDetailUnroutedComponent } from './components/mascota/mascota-detail-unrouted/mascota-detail-unrouted.component';
+import { CitaSelectionUnroutedComponent } from './components/cita/cita-selection-unrouted/cita-selection-unrouted.component';
+import { CitaViewRoutedComponent } from './components/cita/cita-view-routed/cita-view-routed.component';
+import { CitaPlistUnroutedComponent } from './components/cita/cita-plist-unrouted/cita-plist-unrouted.component';
+import { CitaPlistRoutedComponent } from './components/cita/cita-plist-routed/cita-plist-routed.component';
+import { CitaNewRoutedComponent } from './components/cita/cita-new-routed/cita-new-routed.component';
+import { CitaFormUnroutedComponent } from './components/cita/cita-form-unrouted/cita-form-unrouted.component';
+import { CitaEditRoutedComponent } from './components/cita/cita-edit-routed/cita-edit-routed.component';
+import { CitaDetailUnroutedComponent } from './components/cita/cita-detail-unrouted/cita-detail-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +73,15 @@ import { MascotaDetailUnroutedComponent } from './components/mascota/mascota-det
     MascotaFormUnroutedComponent,
     MascotaEditRoutedComponent,
     MascotaDetailUnroutedComponent,
+    //--
+    CitaViewRoutedComponent,
+    CitaSelectionUnroutedComponent,
+    CitaPlistUnroutedComponent,
+    CitaPlistRoutedComponent,
+    CitaNewRoutedComponent,
+    CitaFormUnroutedComponent,
+    CitaEditRoutedComponent,
+    CitaDetailUnroutedComponent,
   ],
   imports: [
     BrowserModule,

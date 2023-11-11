@@ -65,26 +65,19 @@ export interface IMascota extends IEntity {
 
 export interface IMascotaPage extends IPage<IMascota> {
 }
-/*
-export interface IThread extends IEntity {
-    title: string,
-    user: IVeterinario,
-    replies: number
+
+
+
+export interface ICita extends IEntity {
+    fecha: string,
+    hora: string,
+    vet: IVeterinario,
+    pet: IMascota,
 }
 
-export interface IThreadPage extends IPage<IThread> {
+export interface ICitaPage extends IPage<ICita> {
 }
 
-export interface IReply extends IEntity {
-    title: string,
-    body: string,
-    user: IVeterinario,
-    thread: IThread
-}
-
-export interface IReplyPage extends IPage<IReply> {
-}
-*/
 export type formOperation = 'EDIT' | 'NEW';
 
 export interface SessionEvent {

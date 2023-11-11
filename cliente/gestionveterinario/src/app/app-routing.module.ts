@@ -9,6 +9,10 @@ import { MascotaViewRoutedComponent } from './components/mascota/mascota-view-ro
 import { MascotaPlistRoutedComponent } from './components/mascota/mascota-plist-routed/mascota-plist-routed.component';
 import { MascotaNewRoutedComponent } from './components/mascota/mascota-new-routed/mascota-new-routed.component';
 import { MascotaEditRoutedComponent } from './components/mascota/mascota-edit-routed/mascota-edit-routed.component';
+import { CitaViewRoutedComponent } from './components/cita/cita-view-routed/cita-view-routed.component';
+import { CitaPlistRoutedComponent } from './components/cita/cita-plist-routed/cita-plist-routed.component';
+import { CitaNewRoutedComponent } from './components/cita/cita-new-routed/cita-new-routed.component';
+import { CitaEditRoutedComponent } from './components/cita/cita-edit-routed/cita-edit-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -21,6 +25,10 @@ const routes: Routes = [
   { path: 'mascota/plist', component: MascotaPlistRoutedComponent },
   { path: 'mascota/new', component: MascotaNewRoutedComponent },
   { path: 'mascota/edit/:id', component: MascotaEditRoutedComponent },
+  { path: 'cita/view/:id', component: CitaViewRoutedComponent },
+  { path: 'cita/plist', component: CitaPlistRoutedComponent },
+  { path: 'cita/new', component: CitaNewRoutedComponent },
+  { path: 'cita/edit/:id', component: CitaEditRoutedComponent },
 
   
 ];
