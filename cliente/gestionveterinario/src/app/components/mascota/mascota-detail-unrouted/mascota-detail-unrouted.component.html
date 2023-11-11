@@ -1,0 +1,51 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+      <div class="alert alert-danger" role="alert">
+          {{status!.error.message}} - {{status!.message}}
+      </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <table class="table table-striped table-hover">
+      <tbody>
+          <tr>
+              <th>Property</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <th>id</th>
+              <td>{{oPet.id}}</td>
+          </tr>
+          <tr>
+              <th>name</th>
+              <td>{{oPet.name}}</td>
+          </tr>
+          <tr>
+              <th>surname</th>
+              <td>{{oPet.chip}}</td>
+          </tr>
+          <tr>
+              <th>email</th>
+              <td>{{oPet.propietario}}</td>
+          </tr>
+          <tr>
+              <th>username</th>
+              <td>{{oPet.phone}}</td>
+          </tr>
+          <tr>
+              <th>DNI</th>
+              <td>{{oPet.email}}</td>
+          </tr>
+          <tr>
+              <th>citas</th>
+              <td>
+                 <a [routerLink]="['veterinario','plist','byuser',oPet.id]"
+                      *ngIf="oPet.citas>0">{{oPet.citas}}</a>
+                  <span *ngIf="oPet.citas==0">0</span>
+              </td>
+          </tr>
+
+      </tbody>
+  </table>
+</div>

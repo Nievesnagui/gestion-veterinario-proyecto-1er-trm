@@ -31,6 +31,15 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MascotaViewRoutedComponent } from './components/mascota/mascota-view-routed/mascota-view-routed.component';
+import { MascotaSelectionUnroutedComponent } from './components/mascota/mascota-selection-unrouted/mascota-selection-unrouted.component';
+import { MascotaAjaxService } from './service/mascota.ajax.service';
+import { MascotaPlistUnroutedComponent } from './components/mascota/mascota-plist-unrouted/mascota-plist-unrouted.component';
+import { MascotaPlistRoutedComponent } from './components/mascota/mascota-plist-routed/mascota-plist-routed.component';
+import { MascotaNewRoutedComponent } from './components/mascota/mascota-new-routed/mascota-new-routed.component';
+import { MascotaFormUnroutedComponent } from './components/mascota/mascota-form-unrouted/mascota-form-unrouted.component';
+import { MascotaEditRoutedComponent } from './components/mascota/mascota-edit-routed/mascota-edit-routed.component';
+import { MascotaDetailUnroutedComponent } from './components/mascota/mascota-detail-unrouted/mascota-detail-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +56,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     VeterinarioEditRoutedComponent,
     VeterinarioFormUnroutedComponent,
     VeterinairoDetailUnroutedComponent,
-
+    //--
+    MascotaViewRoutedComponent,
+    MascotaSelectionUnroutedComponent,
+    MascotaPlistUnroutedComponent,
+    MascotaPlistRoutedComponent,
+    MascotaNewRoutedComponent,
+    MascotaFormUnroutedComponent,
+    MascotaEditRoutedComponent,
+    MascotaDetailUnroutedComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +81,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   ],
   providers: [
     VeterinarioAjaxService, 
+    MascotaAjaxService,
     MatSnackBar, 
     MatFormFieldModule,
     DialogService,

@@ -53,7 +53,7 @@ public class SessionService {
         if (this.getSessionUsername() != null) {
             VeterinarioEntity oVeterinarioEntityInSession = oVeterinarioRepository.findByUsername(this.getSessionUsername())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-            return Boolean.FALSE.equals(oVeterinarioEntityInSession.getRol());
+            return Boolean.FALSE.equals(oVeterinarioEntityInSession.getRole());
         } else {
             return false;
         }
@@ -63,7 +63,7 @@ public class SessionService {
         if (this.getSessionUsername() != null) {
             VeterinarioEntity oVeterinarioEntityInSession = oVeterinarioRepository.findByUsername(this.getSessionUsername())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-            return Boolean.TRUE.equals(oVeterinarioEntityInSession.getRol());
+            return Boolean.TRUE.equals(oVeterinarioEntityInSession.getRole());
         } else {
             return false;
         }

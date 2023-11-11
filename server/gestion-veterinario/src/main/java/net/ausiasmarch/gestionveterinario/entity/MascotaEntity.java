@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,7 +45,7 @@ public class MascotaEntity {
     @Size(min = 8, max = 20)
     @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal")
     private String phone;
-    @OneToMany(mappedBy = "mascota", fetch = jakarta.persistence.FetchType.LAZY)
+    @OneToMany(mappedBy = "mascota", fetch = FetchType.EAGER)
     private List<CitaEntity> citas;
 
     @Email

@@ -15,45 +15,45 @@
             </tr>
             <tr>
                 <th>id</th>
-                <td>{{oUser.id}}</td>
+                <td>{{oVet.id}}</td>
             </tr>
             <tr>
                 <th>name</th>
-                <td>{{oUser.name}}</td>
+                <td>{{oVet.name}}</td>
             </tr>
             <tr>
                 <th>surname</th>
-                <td>{{oUser.surname}}</td>
+                <td>{{oVet.surname}}</td>
             </tr>
             <tr>
                 <th>email</th>
-                <td>{{oUser.email}}</td>
+                <td>{{oVet.email}}</td>
             </tr>
             <tr>
                 <th>username</th>
-                <td>{{oUser.username}}</td>
+                <td>{{oVet.username}}</td>
             </tr>
             <tr>
                 <th>DNI</th>
-                <td>{{oUser.dni}}</td>
+                <td>{{oVet.dni}}</td>
             </tr>
             <tr>
                 <th>phone</th>
-                <td>{{oUser.phone}}</td>
+                <td>{{oVet.phone}}</td>
             </tr>
             <tr>
                 <th>role</th>
                 <td>
-                    <span *ngIf="oUser.role==true">Admin</span>
-                    <span *ngIf="oUser.role==false">User</span>
+                    <span *ngIf="oVet.role==true">Admin</span>
+                    <span *ngIf="oVet.role==false">User</span>
                 </td>
             </tr>
             <tr>
                 <th>citas</th>
                 <td>
-                   <a [routerLink]="['veterinario','plist','byuser',oUser.id]"
-                        *ngIf="oUser.citas>0">{{oUser.citas}}</a>
-                    <span *ngIf="oUser.citas==0">0</span>
+                   <a [routerLink]="['veterinario','plist','byuser',oVet.id]"
+                        *ngIf="oVet.citas>0">{{oVet.citas}}</a>
+                    <span *ngIf="oVet.citas==0">0</span>
                 </td>
             </tr>
 

@@ -1,26 +1,27 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IVeterinario, IVeterinarioPage } from 'src/app/model/model.interfaces';
-import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
+import { IMascota, IMascotaPage } from 'src/app/model/model.interfaces';
+import { MascotaAjaxService } from 'src/app/service/mascota.ajax.service';
 
 @Component({
-  selector: 'app-veterinario-selection-unrouted',
-  templateUrl: './veterinario-selection-unrouted.component.html',
-  styleUrls: ['./veterinario-selection-unrouted.component.css']
+  selector: 'app-mascota-selection-unrouted',
+  templateUrl: './mascota-selection-unrouted.component.html',
+  styleUrls: ['./mascota-selection-unrouted.component.css']
 })
-export class VeterinarioSelectionUnroutedComponent implements OnInit {
+export class MascotaSelectionUnroutedComponent implements OnInit {
 
-  oPage: IVeterinarioPage | undefined;
+  
+  oPage: IMascotaPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oVeterinarioToRemove: IVeterinario | null = null;
+  oMascotaToRemove: IMascota | null = null;
 
   constructor(
-    private oVeterinarioAjaxService: VeterinarioAjaxService,
+    private oMascotaAjaxService: MascotaAjaxService,
     public oDialogService: DialogService,
     public oDynamicDialogRef: DynamicDialogRef
   ) { }
@@ -30,8 +31,8 @@ export class VeterinarioSelectionUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oVeterinarioAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({    
-      next: (data: IVeterinarioPage) => {
+    this.oMascotaAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({    
+      next: (data: IMascotaPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
@@ -58,7 +59,7 @@ export class VeterinarioSelectionUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  onSelectVet(oVet: IVeterinario) {
-    this.oDynamicDialogRef.close(oVet);
+  onSelectPet(oPet: IMascota) {
+    this.oDynamicDialogRef.close(oPet);
   }
 }

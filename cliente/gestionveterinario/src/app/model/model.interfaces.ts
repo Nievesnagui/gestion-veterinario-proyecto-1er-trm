@@ -53,6 +53,18 @@ export interface IVeterinario extends IEntity {
 
 export interface IVeterinarioPage extends IPage<IVeterinario> {
 }
+
+export interface IMascota extends IEntity {
+    name: string,
+    chip: string,
+    propietario: string,    
+    phone: string,
+    email: string,
+    citas: number
+}
+
+export interface IMascotaPage extends IPage<IMascota> {
+}
 /*
 export interface IThread extends IEntity {
     title: string,
