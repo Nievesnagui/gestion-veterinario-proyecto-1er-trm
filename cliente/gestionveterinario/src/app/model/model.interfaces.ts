@@ -72,7 +72,7 @@ export interface ICita extends IEntity {
     fecha: string,
     hora: string,
     vet: IVeterinario,
-    pet: IMascota,
+    pet: IMascota
 }
 
 export interface ICitaPage extends IPage<ICita> {

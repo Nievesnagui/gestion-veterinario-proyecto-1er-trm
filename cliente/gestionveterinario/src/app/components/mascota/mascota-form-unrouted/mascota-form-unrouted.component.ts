@@ -75,7 +75,7 @@ export class MascotaFormUnroutedComponent implements OnInit {
             // avisar al usuario que se ha creado correctamente
             console.log('Datos a enviar:', this.mascotaForm.value);
             this.oMatSnackBar.open("Pet has been created.", '', { duration: 2000 });
-            this.oRouter.navigate([ '/Mascota/view', this.oMascota.id]);
+            this.oRouter.navigate([ '/mascota/view', this.oMascota.id]);
             
           },
           error: (error: HttpErrorResponse) => {
@@ -94,7 +94,7 @@ export class MascotaFormUnroutedComponent implements OnInit {
             this.initializeForm(this.oMascota);
             // avisar al usuario que se ha actualizado correctamente
             this.oMatSnackBar.open("Pet has been updated.", '', { duration: 2000 });
-            this.oRouter.navigate(['/Mascota', 'view', this.oMascota.id]);
+            this.oRouter.navigate(['/mascota', 'view', this.oMascota.id]);
           },
           error: (error: HttpErrorResponse) => {
             console.log("entra en error del else");

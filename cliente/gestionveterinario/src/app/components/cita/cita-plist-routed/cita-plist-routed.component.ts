@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { CitaAjaxService } from 'src/app/service/cita.ajax.service';
 
 @Component({
@@ -10,12 +11,18 @@ import { CitaAjaxService } from 'src/app/service/cita.ajax.service';
 })
 export class CitaPlistRoutedComponent implements OnInit {
 
+  id_veterinario: number;
+  id_mascota: number;
   bLoading: boolean = false;
 
   constructor(
+    private oActivatedRoute: ActivatedRoute,
     private oCitaAjaxService: CitaAjaxService,
     private oMatSnackBar: MatSnackBar
-  ) { }
+  ) {
+    this.id_veterinario = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id_veterinario") ?? "0");
+    this.id_mascota = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id_mascota") ?? "0");
+   }
 
   ngOnInit() { }
 

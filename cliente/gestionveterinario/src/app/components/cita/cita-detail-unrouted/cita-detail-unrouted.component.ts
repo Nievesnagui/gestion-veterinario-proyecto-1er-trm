@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, Optional } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ICita } from 'src/app/model/model.interfaces';
 import { CitaAjaxService } from 'src/app/service/cita.ajax.service';
@@ -22,8 +21,10 @@ export class CitaDetailUnroutedComponent implements OnInit {
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) {
-    if (config && config.data) {
-      this.id = config.data.id;
+    if (config) {
+      if (config.data) {
+        this.id = config.data.id;
+      }
     }
   }
 

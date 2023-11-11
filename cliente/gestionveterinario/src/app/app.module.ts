@@ -7,7 +7,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 //--
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
@@ -48,7 +47,9 @@ import { CitaNewRoutedComponent } from './components/cita/cita-new-routed/cita-n
 import { CitaFormUnroutedComponent } from './components/cita/cita-form-unrouted/cita-form-unrouted.component';
 import { CitaEditRoutedComponent } from './components/cita/cita-edit-routed/cita-edit-routed.component';
 import { CitaDetailUnroutedComponent } from './components/cita/cita-detail-unrouted/cita-detail-unrouted.component';
-
+import { CitaAjaxService } from './service/cita.ajax.service';
+//-- 
+//import { CryptoService } from './service/crypto.service';
 @NgModule({
   declarations: [
    AppComponent,
@@ -97,12 +98,14 @@ import { CitaDetailUnroutedComponent } from './components/cita/cita-detail-unrou
     ConfirmDialogModule, 
   ],
   providers: [
+    CitaAjaxService,
     VeterinarioAjaxService, 
     MascotaAjaxService,
     MatSnackBar, 
     MatFormFieldModule,
     DialogService,
     ConfirmationService,
+    //CryptoService,
   ],
   bootstrap: [AppComponent]
 })

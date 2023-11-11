@@ -9,6 +9,7 @@ import { CitaAjaxService } from 'src/app/service/cita.ajax.service';
 import { CitaDetailUnroutedComponent } from '../cita-detail-unrouted/cita-detail-unrouted.component';
 import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 import { MascotaAjaxService } from 'src/app/service/mascota.ajax.service';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service';
 
 @Component({
   selector: 'app-cita-plist-unrouted',
@@ -16,13 +17,13 @@ import { MascotaAjaxService } from 'src/app/service/mascota.ajax.service';
   styleUrls: ['./cita-plist-unrouted.component.css']
 })
 export class CitaPlistUnroutedComponent implements OnInit {
-
-  @Input() id_veterinario: number = 0;
+  @Input() id_veterinario: number = 0; 
   @Input() id_mascota: number = 0;
 
+
   oPage: ICitaPage | undefined;
-  oVet: IVeterinario | undefined; 
-  oPet: IMascota | undefined;
+  oVet: IVeterinario | null = null;
+  oPet: IMascota | null = null;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -30,7 +31,7 @@ export class CitaPlistUnroutedComponent implements OnInit {
   oCitaToRemove: ICita | null = null;
 
   constructor(
-    private oVeterinarioAjaxService: VeterinarioAjaxService, 
+    private oVeterinarioAjaxService: VeterinarioAjaxService,
     private oMascotaAjaxService: MascotaAjaxService,
     private oCitaAjaxService: CitaAjaxService,
     public oDialogService: DialogService,
@@ -39,9 +40,6 @@ export class CitaPlistUnroutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id_veterinario = this.id_veterinario || 0;
-    this.id_mascota = this.id_mascota || 0;
-
     this.getPage();
     if (this.id_veterinario > 0) {
       this.getVeterinario();
@@ -50,34 +48,34 @@ export class CitaPlistUnroutedComponent implements OnInit {
       this.getMascota();
     }
   }
-getPage(): void {
-  console.log('id_veterinario:', this.id_veterinario);
-  console.log('id_mascota:', this.id_mascota);
 
-  this.oCitaAjaxService.getPage(
-    this.oPaginatorState.rows,
-    this.oPaginatorState.page,
-    this.orderField,
-    this.orderDirection,
-    this.id_veterinario,
-    this.id_mascota
-  ).subscribe({
-    next: (data: ICitaPage) => {
-      this.oPage = data;
-      this.oPaginatorState.pageCount = data.totalPages;
-      console.log(this.oPaginatorState);
-    },
-    error: (error: HttpErrorResponse) => {
-      this.status = error;
-    }
-  });
-}
+  getPage(): void {
+    this.oCitaAjaxService.getPage(
+      this.oPaginatorState.rows,
+      this.oPaginatorState.page,
+      this.orderField,
+      this.orderDirection,
+      this.id_veterinario,
+      this.id_mascota
+    ).subscribe({
+      next: (data: ICitaPage) => {
+        console.log(data); 
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        console.log(this.oPaginatorState);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  }
 
   onPageChang(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
     this.getPage();
   }
+  
 
   doOrder(fieldorder: string) {
     this.orderField = fieldorder;
@@ -89,14 +87,14 @@ getPage(): void {
     this.getPage();
   }
 
-  ref: DynamicDialogRef | undefined;
+ref: DynamicDialogRef | undefined;
 
   doView(u: ICita) {
     this.ref = this.oDialogService.open(CitaDetailUnroutedComponent, {
       data: {
         id: u.id
       },
-      header: 'View of appointments',
+      header: 'View of appointment',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,

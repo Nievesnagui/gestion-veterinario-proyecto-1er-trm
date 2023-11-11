@@ -20,8 +20,9 @@ export class CitaFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; //new or edit
 
   citaForm!: FormGroup;
-  oCita: ICita = {} as ICita;
+  oCita: ICita = { vet: {}, pet: {} } as ICita;
   status: HttpErrorResponse | null = null;
+
   oDynamicDialogRef: DynamicDialogRef | undefined;
 
   constructor(
@@ -70,15 +71,11 @@ export class CitaFormUnroutedComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("entra en submit");
     if (this.citaForm.valid) {
-      console.log("entra en el if");
       if (this.operation == 'NEW') {
-        console.log("entra en new");
         this.oCitaAjaxService.newOne(this.citaForm.value).subscribe({
           next: (data: ICita) => {
-            console.log("entra en this");
-            this.oCita = data;
+            this.oCita = { "vet": {}, "pet": {} } as ICita;
             this.initializeForm(this.oCita);
             // avisar al usuario que se ha creado correctamente
             console.log('Datos a enviar:', this.citaForm.value);
@@ -87,17 +84,14 @@ export class CitaFormUnroutedComponent implements OnInit {
             
           },
           error: (error: HttpErrorResponse) => {
-            console.log("entra en el error del new");
             this.status = error;
             this.oMatSnackBar.open("Can't create the appointment.", '', { duration: 2000 });
           }
         })
 
       } else {
-        console.log("entra en else");
         this.oCitaAjaxService.updateOne(this.citaForm.value).subscribe({
           next: (data: ICita) => {
-            console.log("entra en el this del else");
             this.oCita = data;
             this.initializeForm(this.oCita);
             // avisar al usuario que se ha actualizado correctamente
@@ -105,7 +99,6 @@ export class CitaFormUnroutedComponent implements OnInit {
             this.oRouter.navigate(['/cita', 'view', this.oCita.id]);
           },
           error: (error: HttpErrorResponse) => {
-            console.log("entra en error del else");
             this.status = error;
             this.oMatSnackBar.open("Can't update appointment.", '', { duration: 2000 });
           }
