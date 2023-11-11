@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -87,7 +88,7 @@ public class VeterinarioEntity {
     @Size(min = 8, max = 20)
     @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal")
     private String phone;
-    @OneToMany(mappedBy = "veterinario", fetch = jakarta.persistence.FetchType.LAZY)
+    @OneToMany(mappedBy = "veterinario", fetch = FetchType.EAGER)
     private List<CitaEntity> citas;
 
     public VeterinarioEntity() {

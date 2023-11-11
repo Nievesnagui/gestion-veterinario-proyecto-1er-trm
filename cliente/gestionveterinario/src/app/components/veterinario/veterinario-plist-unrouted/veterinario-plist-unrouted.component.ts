@@ -69,7 +69,7 @@ export class VeterinarioPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'View of user',
+      header: 'View of vet',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -81,19 +81,19 @@ export class VeterinarioPlistUnroutedComponent implements OnInit {
     this.oVeterinarioToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The user has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open("The vet has been removed.", '', { duration: 2000 });
         this.oVeterinarioAjaxService.removeOne(this.oVeterinarioToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open("The vet hasn't been removed.", "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open("The vet hasn't been removed.", "", { duration: 2000 });
       }
     });
   }

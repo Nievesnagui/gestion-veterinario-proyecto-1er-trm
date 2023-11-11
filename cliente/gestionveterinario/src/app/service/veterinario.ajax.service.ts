@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IVeterinario, IVeterinarioPage } from '../model/model.interfaces';
 import { API_URL } from 'src/environment/environment';
+import { ConfirmationService } from 'primeng/api';
 
 @Injectable()
 export class VeterinarioAjaxService {
@@ -10,7 +11,8 @@ export class VeterinarioAjaxService {
     sUrl: string = API_URL + "/veterinario";
 
     constructor(
-        private oHttpClient: HttpClient
+        private oHttpClient: HttpClient,
+        private oCconfirmationService: ConfirmationService
     ) { }
 
     getOne(id: number): Observable<IVeterinario> {
@@ -24,6 +26,7 @@ export class VeterinarioAjaxService {
     }
 
     removeOne(id: number | undefined): Observable<number> {
+        console.log('Removing veterinarian with ID:', id);
         if (id) {
             return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
         } else {

@@ -29,6 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { ConfirmationService } from 'primeng/api';
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,
+    DialogModule,
+    ConfirmDialogModule, 
   ],
   providers: [
     VeterinarioAjaxService, 
