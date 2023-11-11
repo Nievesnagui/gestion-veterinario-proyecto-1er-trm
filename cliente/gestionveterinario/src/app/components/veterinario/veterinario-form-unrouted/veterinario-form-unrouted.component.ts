@@ -63,27 +63,34 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("entra en submit");
     if (this.veterinarioForm.valid) {
+      console.log("entra en el if");
       if (this.operation == 'NEW') {
+        console.log("entra en new");
         this.oVeterinarioAjaxService.newOne(this.veterinarioForm.value).subscribe({
           next: (data: IVeterinario) => {
+            console.log("entra en this");
             this.oVeterinario = data;
             this.initializeForm(this.oVeterinario);
             // avisar al usuario que se ha creado correctamente
             console.log('Datos a enviar:', this.veterinarioForm.value);
             this.oMatSnackBar.open("Vet has been created.", '', { duration: 2000 });
-            this.oRouter.navigate([ '/veterinario', 'view', this.oVeterinario]);
+            this.oRouter.navigate([ '/veterinario/view', this.oVeterinario.id]);
             
           },
           error: (error: HttpErrorResponse) => {
+            console.log("entra en el error del new");
             this.status = error;
             this.oMatSnackBar.open("Can't create veterinario.", '', { duration: 2000 });
           }
         })
 
       } else {
+        console.log("entra en else");
         this.oVeterinarioAjaxService.updateOne(this.veterinarioForm.value).subscribe({
           next: (data: IVeterinario) => {
+            console.log("entra en el this del else");
             this.oVeterinario = data;
             this.initializeForm(this.oVeterinario);
             // avisar al usuario que se ha actualizado correctamente
@@ -91,6 +98,7 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
             this.oRouter.navigate(['/veterinario', 'view', this.oVeterinario.id]);
           },
           error: (error: HttpErrorResponse) => {
+            console.log("entra en error del else");
             this.status = error;
             this.oMatSnackBar.open("Can't update vet.", '', { duration: 2000 });
           }
