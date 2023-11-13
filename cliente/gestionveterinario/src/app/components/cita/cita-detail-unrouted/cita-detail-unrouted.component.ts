@@ -13,7 +13,7 @@ export class CitaDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oCita: ICita = { vet: {}, pet: {} } as ICita;
+  oCita: ICita = { veterinario: {}, mascota: {} } as ICita;
   status: HttpErrorResponse | null = null;
 
   constructor(

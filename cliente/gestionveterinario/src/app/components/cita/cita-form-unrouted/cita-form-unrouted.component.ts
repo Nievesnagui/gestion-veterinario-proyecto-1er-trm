@@ -20,7 +20,7 @@ export class CitaFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; //new or edit
 
   citaForm!: FormGroup;
-  oCita: ICita = { vet: {}, pet: {} } as ICita;
+  oCita: ICita = { veterinario: {}, mascota: {} } as ICita;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -40,11 +40,11 @@ export class CitaFormUnroutedComponent implements OnInit {
       id: [oCita.id],
       fecha: [oCita.fecha, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       hora: [oCita.hora, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
-      vet: this.oFormBuilder.group({
-        id: [oCita.vet.id, Validators.required]
+      veterinario: this.oFormBuilder.group({
+        id: [oCita.veterinario.id, Validators.required]
       }),
-      pet: this.oFormBuilder.group({
-        id: [oCita.pet.id, Validators.required]
+      mascota: this.oFormBuilder.group({
+        id: [oCita.veterinario.id, Validators.required]
       })
     });
   }
@@ -75,7 +75,7 @@ export class CitaFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.oCitaAjaxService.newOne(this.citaForm.value).subscribe({
           next: (data: ICita) => {
-            this.oCita = { "vet": {}, "pet": {} } as ICita;
+            this.oCita = { "veterinario": {}, "mascota": {} } as ICita;
             this.initializeForm(this.oCita);
             // avisar al usuario que se ha creado correctamente
             console.log('Datos a enviar:', this.citaForm.value);
@@ -118,7 +118,7 @@ export class CitaFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oVet: IVeterinario) => {
       if (oVet) {
-        this.oCita.vet = oVet;
+        this.oCita.veterinario = oVet;
         this.citaForm.controls['vet'].patchValue({ id: oVet.id })
       }
     });
@@ -135,7 +135,7 @@ export class CitaFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oPet: IMascota) => {
       if (oPet) {
-        this.oCita.pet = oPet;
+        this.oCita.mascota = oPet;
         this.citaForm.controls['pet'].patchValue({ id: oPet.id })
       }
     });

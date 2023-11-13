@@ -59,10 +59,8 @@ export class CitaPlistUnroutedComponent implements OnInit {
       this.id_mascota
     ).subscribe({
       next: (data: ICitaPage) => {
-        console.log(data); 
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;

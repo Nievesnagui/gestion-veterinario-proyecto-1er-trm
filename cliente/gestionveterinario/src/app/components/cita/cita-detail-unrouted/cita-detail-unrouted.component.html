@@ -27,12 +27,12 @@
           </tr>
           <tr>
               <th>Vet</th>
-              <td> <a [routerLink]="['/veterinario','view',oCita.vet.id]">{{oCita.vet.name}}
-                      {{oCita.vet.surname}}</a></td>
+              <td> <a [routerLink]="['/veterinario','view',oCita.veterinario.id]">{{oCita.veterinario.name}}
+                      {{oCita.veterinario.surname}}</a></td>
           </tr>
           <tr>
               <th>Pet</th>
-              <td> <a [routerLink]="['/mascota','view',oCita.pet.id]">{{oCita.pet.name}}</a> </td>
+              <td> <a [routerLink]="['/mascota','view',oCita.mascota.id]">{{oCita.mascota.name}}</a> </td>
           </tr>
       </tbody>
   </table>
