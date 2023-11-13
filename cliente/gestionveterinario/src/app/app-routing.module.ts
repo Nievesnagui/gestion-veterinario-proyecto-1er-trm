@@ -32,6 +32,10 @@ const routes: Routes = [
 
   { path: 'cita/view/:id', component: CitaViewRoutedComponent },
   { path: 'cita/plist', component: CitaPlistRoutedComponent },
+  { path: 'cita/plist/byvet/:id_veterinario', component: CitaPlistRoutedComponent },
+  { path: 'cita/plist/bypet/:id_mascota', component: CitaPlistRoutedComponent },
+  { path: 'cita/plist', component: CitaPlistRoutedComponent },
+
   { path: 'cita/new', component: CitaNewRoutedComponent },
   { path: 'cita/edit/:id', component: CitaEditRoutedComponent },
   

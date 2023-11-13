@@ -41,11 +41,11 @@
           <tr *ngFor="let u of oPage?.content" class="align-middle">
             <td class="text-end"><strong>{{u.id}}</strong></td>
             <td>
-              <a [routerLink]="['/cita','plist','byuser',u.vet.id]">({{u.vet.id}}) {{u.vet.name}}
+              <a [routerLink]="['/cita','plist','byvet',u.vet.id]">({{u.vet.id}}) {{u.vet.name}}
                 {{u.vet.surname}}</a>
             </td>
             <td>
-              <a [routerLink]="['/cita','plist','byuser',u.pet.id]">({{u.pet.id}}) {{u.pet.name}}</a>
+              <a [routerLink]="['/cita','plist','bypet',u.pet.id]">({{u.pet.id}}) {{u.pet.name}}</a>
             </td>
             <td>{{u.fecha}}</td>
             <td>{{u.hora}}</td>

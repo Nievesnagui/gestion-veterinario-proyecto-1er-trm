@@ -29,7 +29,7 @@ public class CitaService {
     private MascotaRepository oMascotaRepository;
 
     public CitaEntity get(Long id) {
-        return oCitaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
+        return oCitaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
     }
 
     public CitaEntity create(CitaEntity oCitaEntity) {
@@ -40,7 +40,7 @@ public class CitaService {
     public CitaEntity update(CitaEntity oCitaEntity) {
 
         CitaEntity oCitaEntityAux = oCitaRepository.findById(oCitaEntity.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
         oCitaEntityAux.setVeterinario(oCitaEntity.getVeterinario());
         oCitaEntityAux.setMascota(oCitaEntity.getMascota());
         oCitaEntityAux.setFecha(oCitaEntity.getFecha());
@@ -55,13 +55,21 @@ public class CitaService {
 
     public CitaEntity delete(Long id) {
         CitaEntity oCitaEntityAux = oCitaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
         oCitaRepository.deleteById(id);
         return oCitaEntityAux;
     }
 
-    public Page<CitaEntity> getPage(Pageable oPageable, Long id_veterinario) {
-        return oCitaRepository.findByVeterinarioId(id_veterinario, oPageable);
+    public Page<CitaEntity> getPage(Pageable oPageable, Long id_veterinario, Long id_mascota) {
+         if (id_veterinario == null) {
+            if (id_mascota == null) {
+                return oCitaRepository.findAll(oPageable);
+            } else {
+                return oCitaRepository.findByMascotaId(id_mascota, oPageable);
+            }
+        } else {
+            return oCitaRepository.findByVeterinarioId(id_veterinario, oPageable);
+        }
     }
 
     public Long populate(Integer amount) {

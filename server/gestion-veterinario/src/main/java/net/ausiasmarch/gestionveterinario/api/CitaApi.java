@@ -52,8 +52,9 @@ public class CitaApi {
      @GetMapping("")
     public ResponseEntity<Page<CitaEntity>> getPage(
             Pageable oPageable,
-            @RequestParam(value = "id_user", defaultValue = "", required = false) Long id_veterinario) {
-        return ResponseEntity.ok(oCitaService.getPage(oPageable, id_veterinario));
+            @RequestParam(value = "id_user", defaultValue = "", required = false) Long id_veterinario,
+            @RequestParam(value = "id_mascota", defaultValue = "", required = false) Long id_mascota) {
+        return ResponseEntity.ok(oCitaService.getPage(oPageable, id_veterinario, id_mascota));
     }
     // Endpoint
     @PostMapping("/populate/{amount}")
