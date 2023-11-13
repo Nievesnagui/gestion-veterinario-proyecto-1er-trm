@@ -50,6 +50,8 @@ import { CitaDetailUnroutedComponent } from './components/cita/cita-detail-unrou
 import { CitaAjaxService } from './service/cita.ajax.service';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { CryptoService } from './service/crypto.service';
+import { SessionAjaxService } from './service/session.ajax.service';
 //-- 
 //import { CryptoService } from './service/crypto.service';
 @NgModule({
@@ -110,7 +112,8 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
     MatFormFieldModule,
     DialogService,
     ConfirmationService,
-    //CryptoService,
+    CryptoService,
+    SessionAjaxService,
   ],
   bootstrap: [AppComponent]
 })

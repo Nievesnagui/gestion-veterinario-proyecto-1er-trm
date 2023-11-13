@@ -19,18 +19,22 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
+
   { path: 'veterinario/view/:id', component: VeterinarioViewRoutedComponent },
   { path: 'veterinario/plist', component: VeterinarioPlistRoutedComponent },
   { path: 'veterinario/new', component: VeterinarioNewRoutedComponent },
   { path: 'veterinario/edit/:id', component: VeterinarioEditRoutedComponent },
+
   { path: 'mascota/view/:id', component: MascotaViewRoutedComponent },
   { path: 'mascota/plist', component: MascotaPlistRoutedComponent },
   { path: 'mascota/new', component: MascotaNewRoutedComponent },
   { path: 'mascota/edit/:id', component: MascotaEditRoutedComponent },
+
   { path: 'cita/view/:id', component: CitaViewRoutedComponent },
   { path: 'cita/plist', component: CitaPlistRoutedComponent },
   { path: 'cita/new', component: CitaNewRoutedComponent },
   { path: 'cita/edit/:id', component: CitaEditRoutedComponent },
+  
   { path: 'login', component: LoginRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
 

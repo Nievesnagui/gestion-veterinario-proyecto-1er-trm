@@ -1,4 +1,5 @@
 package net.ausiasmarch.gestionveterinario.api;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import net.ausiasmarch.gestionveterinario.entity.VeterinarioEntity;
 import net.ausiasmarch.gestionveterinario.service.VeterinarioService;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/veterinario")
 public class VeterinarioApi {
     @Autowired
     VeterinarioService oVeterinarioService;
-
 
     @GetMapping("/{id}")
     public ResponseEntity<VeterinarioEntity> get(@PathVariable("id") Long id) {
@@ -41,16 +42,15 @@ public class VeterinarioApi {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<VeterinarioEntity> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Long> delete(@PathVariable("id") Long id) {
         return ResponseEntity.ok(oVeterinarioService.delete(id));
-
     }
 
-     @GetMapping("")
-     public ResponseEntity<Page<VeterinarioEntity>> getPage(
-        Pageable oPageable) {
-    return ResponseEntity.ok(oVeterinarioService.getPage(oPageable));
-}
+    @GetMapping("")
+    public ResponseEntity<Page<VeterinarioEntity>> getPage(
+            Pageable oPageable) {
+        return ResponseEntity.ok(oVeterinarioService.getPage(oPageable));
+    }
 
     // Endpoint
     @PostMapping("/populate/{amount}")
@@ -58,4 +58,15 @@ public class VeterinarioApi {
         return ResponseEntity.ok(oVeterinarioService.populate(amount));
 
     }
+
+    @DeleteMapping("/empty")
+    public ResponseEntity<Long> empty() {
+        return ResponseEntity.ok(oVeterinarioService.empty());
+    }
+
+    @GetMapping("/byRepliesNumberDesc")
+    public ResponseEntity<Page<VeterinarioEntity>> getPageByRepliesNumberDesc(Pageable oPageable) {
+        return ResponseEntity.ok(oVeterinarioService.getPageByRepliesNumberDesc(oPageable));
+    }
+
 }

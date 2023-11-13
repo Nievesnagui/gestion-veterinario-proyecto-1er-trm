@@ -20,8 +20,8 @@ public class SessionController {
     SessionService oSessionService;
 
     @PostMapping()
-    public ResponseEntity<String> login(@RequestBody VeterinarioBean oUserBean) {
-        return ResponseEntity.ok("\"" + oSessionService.login(oUserBean) + "\"");
+    public ResponseEntity<String> login(@RequestBody VeterinarioBean oVeterinarioBean) {
+        return ResponseEntity.ok("\"" + oSessionService.login(oVeterinarioBean) + "\"");
     }
 
 }

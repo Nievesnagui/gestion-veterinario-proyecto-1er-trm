@@ -1,7 +1,5 @@
 package net.ausiasmarch.gestionveterinario.helper;
 
-import java.util.Random;
-
 public class DataGenerationHelper {
     private static final String[] aNames = { "Aurora", "Gabriel", "Juan", "Cristina", "María", "Esther", "Esperanza" };
     private static final String[] aSurnames = { "Dominguez", "Aguilar", "Lozano", "Díaz", "Palomero", "Cuesta",
@@ -24,8 +22,6 @@ public class DataGenerationHelper {
         }
         return cadenaSinAcentos;
     }
-
-    private static Random random = new Random();
 
     private static String[] mascota = { "Bollito", "Jaboncillo", "Magdaleno", "Albaricoque", "Michuelo", "Miaumilton" };
 

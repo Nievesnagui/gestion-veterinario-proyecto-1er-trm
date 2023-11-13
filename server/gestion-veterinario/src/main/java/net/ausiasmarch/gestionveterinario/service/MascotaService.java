@@ -4,7 +4,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.gestionveterinario.entity.MascotaEntity;
-import net.ausiasmarch.gestionveterinario.entity.VeterinarioEntity;
 import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
 import net.ausiasmarch.gestionveterinario.helper.DataGenerationHelper;
 import net.ausiasmarch.gestionveterinario.repository.MascotaRepository;
@@ -64,7 +63,6 @@ public class MascotaService {
 
         for (int i = 0; i < amount; i++) {
 
-            String password = "unapasswordsegura12345567789976543" + i;
             String name = DataGenerationHelper.getRadomMascota();
             String propietario = DataGenerationHelper.getRadomName()+ " " + DataGenerationHelper.getRadomSurname();
             String phone="123465789";

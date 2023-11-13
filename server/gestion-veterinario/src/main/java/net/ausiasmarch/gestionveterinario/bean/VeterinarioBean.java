@@ -23,8 +23,5 @@ public class VeterinarioBean {
         this.password = password;
     }
 
-    public String getVeterinarioname() {
-        return null;
-    }
 
 }

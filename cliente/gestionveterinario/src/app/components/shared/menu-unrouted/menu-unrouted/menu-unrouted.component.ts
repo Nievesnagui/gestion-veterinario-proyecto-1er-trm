@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service';
 
 @Component({
     selector: 'app-menu-unrouted',
@@ -9,6 +10,8 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenubarUnroutedComponent implements OnInit {
     items: MenuItem[] | undefined;
+
+    constructor(private sessionService: SessionAjaxService) {}
 
     ngOnInit() {
         this.items = [
@@ -66,8 +69,9 @@ export class MenubarUnroutedComponent implements OnInit {
                 ]
             },
             {
-                label: 'Quit', //Por gestionar
-                icon: 'pi pi-fw pi-power-off'
+                label: this.sessionService.isAuthenticated() ? 'Quit' : 'Login',
+                icon: 'pi pi-fw pi-power-off',
+                routerLink: this.sessionService.isAuthenticated() ? 'logout' : 'login',
             }
         ];
     }
