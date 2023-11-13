@@ -25,7 +25,7 @@ import { VeterinarioFormUnroutedComponent } from './components/veterinario/veter
 import { VeterinairoDetailUnroutedComponent } from './components/veterinario/veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
@@ -52,6 +52,8 @@ import { LoginRoutedComponent } from './components/shared/login-routed/login-rou
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { CryptoService } from './service/crypto.service';
 import { SessionAjaxService } from './service/session.ajax.service';
+import { AuthInterceptor } from './interceptors/auth.interceptors';
+
 //-- 
 //import { CryptoService } from './service/crypto.service';
 @NgModule({
@@ -114,6 +116,7 @@ import { SessionAjaxService } from './service/session.ajax.service';
     ConfirmationService,
     CryptoService,
     SessionAjaxService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
