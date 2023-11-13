@@ -13,6 +13,8 @@ import { CitaViewRoutedComponent } from './components/cita/cita-view-routed/cita
 import { CitaPlistRoutedComponent } from './components/cita/cita-plist-routed/cita-plist-routed.component';
 import { CitaNewRoutedComponent } from './components/cita/cita-new-routed/cita-new-routed.component';
 import { CitaEditRoutedComponent } from './components/cita/cita-edit-routed/cita-edit-routed.component';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'cita/plist', component: CitaPlistRoutedComponent },
   { path: 'cita/new', component: CitaNewRoutedComponent },
   { path: 'cita/edit/:id', component: CitaEditRoutedComponent },
+  { path: 'login', component: LoginRoutedComponent },
+  { path: 'logout', component: LogoutRoutedComponent },
 
   
 ];

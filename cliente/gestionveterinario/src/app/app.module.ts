@@ -48,6 +48,8 @@ import { CitaFormUnroutedComponent } from './components/cita/cita-form-unrouted/
 import { CitaEditRoutedComponent } from './components/cita/cita-edit-routed/cita-edit-routed.component';
 import { CitaDetailUnroutedComponent } from './components/cita/cita-detail-unrouted/cita-detail-unrouted.component';
 import { CitaAjaxService } from './service/cita.ajax.service';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 //-- 
 //import { CryptoService } from './service/crypto.service';
 @NgModule({
@@ -83,6 +85,9 @@ import { CitaAjaxService } from './service/cita.ajax.service';
     CitaFormUnroutedComponent,
     CitaEditRoutedComponent,
     CitaDetailUnroutedComponent,
+    //--
+    LoginRoutedComponent,
+    LogoutRoutedComponent,
   ],
   imports: [
     BrowserModule,
