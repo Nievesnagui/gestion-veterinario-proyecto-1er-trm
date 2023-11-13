@@ -4,8 +4,6 @@ import { Observable, Subject } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
 import { IToken, SessionEvent } from '../model/model.interfaces';
 
-
-
 @Injectable()
 export class SessionAjaxService {
 

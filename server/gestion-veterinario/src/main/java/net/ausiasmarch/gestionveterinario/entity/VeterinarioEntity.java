@@ -88,7 +88,7 @@ public class VeterinarioEntity {
     @Size(min = 8, max = 20)
     @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal")
     private String phone;
-    @OneToMany(mappedBy = "veterinario", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "veterinario", fetch = FetchType.EAGER) //aquí él tiene: fetch = jakarta.persistence.FetchType.LAZY
     private List<CitaEntity> citas;
 
     public VeterinarioEntity() {

@@ -31,7 +31,7 @@ public class VeterinarioApi {
     }
 
     @PostMapping("")
-    public ResponseEntity<VeterinarioEntity> create(@RequestBody @Valid VeterinarioEntity oVeterinarioEntity) {
+    public ResponseEntity<Long> create(@RequestBody @Valid VeterinarioEntity oVeterinarioEntity) {
         return ResponseEntity.ok(oVeterinarioService.create(oVeterinarioEntity));
     }
 

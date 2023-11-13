@@ -33,11 +33,13 @@ public class VeterinarioService {
                 .orElseThrow(() -> new ResourceNotFoundException("Veterinario not found"));
     }
 
-    public VeterinarioEntity create(VeterinarioEntity oVeterinarioEntity) {
+    public Long create(VeterinarioEntity oVeterinarioEntity) {
         oSessionService.onlyAdmins();
         oVeterinarioEntity.setId(null);
         oVeterinarioEntity.setPassword(genericPasswd);
-        return oVeterinarioRepository.save(oVeterinarioEntity);
+        return oVeterinarioRepository.save(oVeterinarioEntity).getId();
+        // tenia esto antes: return oVeterinarioRepository.save(oVeterinarioEntity);
+
     }
 
     public VeterinarioEntity update(VeterinarioEntity oVeterinarioEntityToSet) {
@@ -55,8 +57,8 @@ public class VeterinarioService {
          * return oVeterinarioRepository.save(oVeterinarioEntityAux);
          */
         VeterinarioEntity oVeterinarioEntityFromDatabase = this.get(oVeterinarioEntityToSet.getId());
-
         oSessionService.onlyAdminsOrUsersWithIisOwnData(oVeterinarioEntityFromDatabase.getId());
+        
         if (oSessionService.isUser()) {
             oVeterinarioEntityToSet.setId(null);
             oVeterinarioEntityToSet.setRole(oVeterinarioEntityFromDatabase.getRole());
@@ -101,9 +103,9 @@ public class VeterinarioService {
     }
 
     public Long populate(Integer amount) {
+        oSessionService.onlyAdmins();
 
         for (int i = 0; i < amount; i++) {
-
             String password = "unapasswordsegura12345567789976543" + i;
             String name = DataGenerationHelper.getRadomName();
             String surname = DataGenerationHelper.getRadomSurname();
