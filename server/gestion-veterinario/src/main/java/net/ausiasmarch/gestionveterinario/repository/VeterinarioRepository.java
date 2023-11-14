@@ -12,14 +12,17 @@ import net.ausiasmarch.gestionveterinario.entity.VeterinarioEntity;
 
 public interface VeterinarioRepository extends JpaRepository<VeterinarioEntity, Long> {
 
-   
-    /*Optional<VeterinarioEntity> findByUsername(String username);
-
-    Optional<VeterinarioEntity> findByUsernameAndPassword(String username, String password);
-
-    @Modifying
-    @Query(value = "ALTER TABLE user AUTO_INCREMENT = 1", nativeQuery = true)
-    void resetAutoIncrement();*/
+    /*
+     * Optional<VeterinarioEntity> findByUsername(String username);
+     * 
+     * Optional<VeterinarioEntity> findByUsernameAndPassword(String username, String
+     * password);
+     * 
+     * @Modifying
+     * 
+     * @Query(value = "ALTER TABLE user AUTO_INCREMENT = 1", nativeQuery = true)
+     * void resetAutoIncrement();
+     */
 
     Optional<VeterinarioEntity> findByUsername(String username);
 
@@ -31,5 +34,5 @@ public interface VeterinarioRepository extends JpaRepository<VeterinarioEntity, 
     @Modifying
     @Query(value = "ALTER TABLE user AUTO_INCREMENT = 1", nativeQuery = true)
     void resetAutoIncrement();
-    
+
 }
