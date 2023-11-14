@@ -10,6 +10,7 @@ import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
 import net.ausiasmarch.gestionveterinario.exception.UnauthorizedException;
 import net.ausiasmarch.gestionveterinario.helper.JWTHelper;
 import net.ausiasmarch.gestionveterinario.repository.VeterinarioRepository;
+
 @Service
 public class SessionService {
 
@@ -25,7 +26,7 @@ public class SessionService {
         return JWTHelper.generateJWT(oVeterinarioBean.getUsername());
     }
 
-    public String getSessionUsername() {        
+    public String getSessionUsername() {
         if (oHttpServletRequest.getAttribute("username") instanceof String) {
             return oHttpServletRequest.getAttribute("username").toString();
         } else {
@@ -35,7 +36,7 @@ public class SessionService {
 
     public VeterinarioEntity getSessionUser() {
         if (this.getSessionUsername() != null) {
-            return oVeterinarioRepository.findByUsername(this.getSessionUsername()).orElse(null);    
+            return oVeterinarioRepository.findByUsername(this.getSessionUsername()).orElse(null);
         } else {
             return null;
         }
@@ -47,11 +48,13 @@ public class SessionService {
         } else {
             return false;
         }
+
     }
 
     public Boolean isAdmin() {
         if (this.getSessionUsername() != null) {
-            VeterinarioEntity oVeterinarioEntityInSession = oVeterinarioRepository.findByUsername(this.getSessionUsername())
+            VeterinarioEntity oVeterinarioEntityInSession = oVeterinarioRepository
+                    .findByUsername(this.getSessionUsername())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));
             return Boolean.FALSE.equals(oVeterinarioEntityInSession.getRole());
         } else {
@@ -61,7 +64,8 @@ public class SessionService {
 
     public Boolean isUser() {
         if (this.getSessionUsername() != null) {
-            VeterinarioEntity oVeterinarioEntityInSession = oVeterinarioRepository.findByUsername(this.getSessionUsername())
+            VeterinarioEntity oVeterinarioEntityInSession = oVeterinarioRepository
+                    .findByUsername(this.getSessionUsername())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));
             return Boolean.TRUE.equals(oVeterinarioEntityInSession.getRole());
         } else {

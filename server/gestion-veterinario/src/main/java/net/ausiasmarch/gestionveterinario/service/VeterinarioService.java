@@ -58,7 +58,7 @@ public class VeterinarioService {
          */
         VeterinarioEntity oVeterinarioEntityFromDatabase = this.get(oVeterinarioEntityToSet.getId());
         oSessionService.onlyAdminsOrUsersWithIisOwnData(oVeterinarioEntityFromDatabase.getId());
-        
+
         if (oSessionService.isUser()) {
             oVeterinarioEntityToSet.setId(null);
             oVeterinarioEntityToSet.setRole(oVeterinarioEntityFromDatabase.getRole());
@@ -82,19 +82,19 @@ public class VeterinarioService {
 
     /* Este es copiado del suyo nuevo */
     public Long delete(Long id) {
-        oSessionService.onlyAdmins();
+       oSessionService.onlyAdmins();
         oVeterinarioRepository.deleteById(id);
         return id;
     }
 
     public VeterinarioEntity getOneRandom() {
-        oSessionService.onlyAdmins();
+       oSessionService.onlyAdmins();
         Pageable oPageable = PageRequest.of((int) (Math.random() * oVeterinarioRepository.count()), 1);
         return oVeterinarioRepository.findAll(oPageable).getContent().get(0);
     }
 
     public Page<VeterinarioEntity> getPage(Pageable oPageable) {
-        oSessionService.onlyAdmins();
+         oSessionService.onlyAdmins();
         return oVeterinarioRepository.findAll(oPageable);
     }
 
@@ -126,12 +126,14 @@ public class VeterinarioService {
     public Long empty() {
         oSessionService.onlyAdmins();
         oVeterinarioRepository.deleteAll();
-        oVeterinarioRepository.resetAutoIncrement();
+        // oVeterinarioRepository.resetAutoIncrement();
         VeterinarioEntity oVeterinarioEntity1 = new VeterinarioEntity("Admin", "Apellido", "mail@mail.com",
-                genericPasswd, "658945123", "32569874A", "useradmin", false);
+                "useradmin", "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", "32569874A",
+                "658945123", true);
         oVeterinarioRepository.save(oVeterinarioEntity1);
         oVeterinarioEntity1 = new VeterinarioEntity("User", "Apellido", "mail@mail.com",
-                genericPasswd, "658945123", "32569874A", "useruser", true);
+                "useruser", "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", "32569874A",
+                "658945123", false);
         oVeterinarioRepository.save(oVeterinarioEntity1);
         return oVeterinarioRepository.count();
     }
