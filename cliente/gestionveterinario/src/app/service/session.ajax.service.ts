@@ -2,7 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
-import { IToken, SessionEvent } from '../model/model.interfaces';
+
+
+export interface SessionEvent {
+    type: string;
+}
+
+export interface IToken {
+    jti: string;
+    iss: string;
+    iat: number;
+    exp: number;
+    name: string;
+}
 
 @Injectable()
 export class SessionAjaxService {
@@ -73,7 +85,7 @@ export class SessionAjaxService {
         }
     }
 
-    on(): Observable<SessionEvent> {
+    on(event: SessionEvent): Observable<SessionEvent> {
         return this.subjectSession.asObservable();
     }
 

@@ -49,7 +49,7 @@ public class VeterinarioEntity {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull
     @NotBlank
-    @Size(min = 20, max = 256)
+    @Size(min = 6, max = 256)
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal")
     private String password = "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e";
 
@@ -69,7 +69,7 @@ public class VeterinarioEntity {
     public VeterinarioEntity(@NotBlank @NotNull @Size(min = 3, max = 255) String name,
             @NotBlank @NotNull @Size(min = 3, max = 255) String surname, @Email String email,
             @NotBlank @NotNull @Size(min = 6, max = 255) String username,
-            @NotNull @NotBlank @Size(min = 20, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password,
+            @NotNull @NotBlank @Size(min = 6, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password,
             @NotBlank @NotNull @Size(min = 6, max = 255) String dni,
             @NotNull @NotBlank @Size(min = 8, max = 20) @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal") String phone,
             Boolean role) {
@@ -100,7 +100,7 @@ public class VeterinarioEntity {
     }
 
     public VeterinarioEntity(@NotBlank @NotNull @Size(min = 3, max = 255) String name,
-            @NotNull @NotBlank @Size(min = 20, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password) {
+            @NotNull @NotBlank @Size(min = 6, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password) {
         this.name = name;
         this.password = password;
     }
@@ -108,7 +108,7 @@ public class VeterinarioEntity {
     public VeterinarioEntity(Long id, @NotBlank @NotNull @Size(min = 3, max = 255) String name,
             @NotBlank @NotNull @Size(min = 3, max = 255) String surname, @Email String email,
             @NotBlank @NotNull @Size(min = 6, max = 255) String username,
-            @NotNull @NotBlank @Size(min = 20, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password,
+            @NotNull @NotBlank @Size(min = 6, max = 256) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Password must be decimal") String password,
             @NotBlank @NotNull @Size(min = 6, max = 255) String dni,
             @NotNull @NotBlank @Size(min = 8, max = 20) @Pattern(regexp = "^[0-9]+$", message = "Phone number must be decimal") String phone,
             List<CitaEntity> citas) {
