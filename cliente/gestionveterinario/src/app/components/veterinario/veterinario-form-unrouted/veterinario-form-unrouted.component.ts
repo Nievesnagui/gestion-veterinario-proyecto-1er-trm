@@ -67,28 +67,31 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.oVeterinarioAjaxService.newOne(this.veterinarioForm.value).subscribe({
           next: (data: IVeterinario) => {
-              this.oVeterinario = data;
-              this.initializeForm(this.oVeterinario);
-              // Log para verificar el valor de data.id
-              console.log('Datos a enviar:', this.veterinarioForm.value);
-              console.log('ID del veterinario:', this.oVeterinario.id);
-      
-              // Verifica si 'id' está definido antes de navegar
-              if (data.id !== null && data.id !== undefined) {
-                  this.oRouter.navigate(['/veterinario/view', data.id]);
-              } else {
-                  console.error('No se puede navegar a la vista del veterinario porque el ID no está definido.');
-              }
+            this.oVeterinario = data;
+            this.initializeForm(this.oVeterinario);
+
+            this.oMatSnackBar.open("Vet has been created.", '', { duration: 2000 });
+            // Extraer el ID del nuevo veterinario
+            const newVeterinarioId = data;
+
+            // Verificar si el ID está definido antes de navegar
+            if (newVeterinarioId !== null && newVeterinarioId !== undefined) {
+              this.oRouter.navigate(['/veterinario/view', newVeterinarioId]);
+            } else {
+              console.error('No se puede navegar a la vista del veterinario porque el ID no está definido.');
+            }
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("Can't create veterinario.", '', { duration: 2000 });
+            this.oMatSnackBar.open("Can't create vet.", '', { duration: 2000 });
           }
         })
 
       } else {
+        console.log("entra en else");
         this.oVeterinarioAjaxService.updateOne(this.veterinarioForm.value).subscribe({
           next: (data: IVeterinario) => {
+            console.log("entra en el this del else");
             this.oVeterinario = data;
             this.initializeForm(this.oVeterinario);
             // avisar al usuario que se ha actualizado correctamente
@@ -96,6 +99,7 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
             this.oRouter.navigate(['/veterinario', 'view', this.oVeterinario.id]);
           },
           error: (error: HttpErrorResponse) => {
+            console.log("entra en error del else");
             this.status = error;
             this.oMatSnackBar.open("Can't update vet.", '', { duration: 2000 });
           }

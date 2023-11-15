@@ -80,6 +80,7 @@ export class CitaFormUnroutedComponent implements OnInit {
           next: (data: ICita) => {
             this.oCita = data;
             this.initializeForm(this.oCita);
+            
             console.log('Datos a enviar:', this.citaForm.value);
             this.oMatSnackBar.open("The appointment has been created.", '', { duration: 2000 });
 
