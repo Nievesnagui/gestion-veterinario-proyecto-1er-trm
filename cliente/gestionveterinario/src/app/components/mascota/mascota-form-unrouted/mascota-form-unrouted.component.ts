@@ -62,14 +62,10 @@ export class MascotaFormUnroutedComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("entra en submit");
     if (this.mascotaForm.valid) {
-      console.log("entra en el if");
       if (this.operation == 'NEW') {
-        console.log("entra en new");
         this.oMascotaAjaxService.newOne(this.mascotaForm.value).subscribe({
           next: (data: IMascota) => {
-            console.log("entra en this");
             this.oMascota = data;
             this.initializeForm(this.oMascota);
             // avisar al usuario que se ha creado correctamente
@@ -79,7 +75,6 @@ export class MascotaFormUnroutedComponent implements OnInit {
             
           },
           error: (error: HttpErrorResponse) => {
-            console.log("entra en el error del new");
             this.status = error;
             this.oMatSnackBar.open("Can't create Mascota.", '', { duration: 2000 });
           }

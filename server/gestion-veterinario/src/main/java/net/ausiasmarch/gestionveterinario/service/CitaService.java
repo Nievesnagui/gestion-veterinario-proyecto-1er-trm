@@ -4,16 +4,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.gestionveterinario.entity.CitaEntity;
-import net.ausiasmarch.gestionveterinario.entity.MascotaEntity;
-import net.ausiasmarch.gestionveterinario.entity.VeterinarioEntity;
 import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
+import net.ausiasmarch.gestionveterinario.helper.DataGenerationHelper;
 import net.ausiasmarch.gestionveterinario.repository.CitaRepository;
-import net.ausiasmarch.gestionveterinario.repository.MascotaRepository;
-import net.ausiasmarch.gestionveterinario.repository.VeterinarioRepository;
-
-import java.sql.Time;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
@@ -23,10 +16,10 @@ public class CitaService {
     CitaRepository oCitaRepository;
 
     @Autowired
-    private VeterinarioRepository oVeterinarioRepository;
+    VeterinarioService oVeterinarioService;
 
     @Autowired
-    private MascotaRepository oMascotaRepository;
+    MascotaService oMascotaService;
 
     public CitaEntity get(Long id) {
         return oCitaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
@@ -44,7 +37,6 @@ public class CitaService {
         oCitaEntityAux.setVeterinario(oCitaEntity.getVeterinario());
         oCitaEntityAux.setMascota(oCitaEntity.getMascota());
         oCitaEntityAux.setFecha(oCitaEntity.getFecha());
-        oCitaEntityAux.setHora(oCitaEntity.getHora());
 
         // oCitaEntity.setId(null);
         return oCitaRepository.save(oCitaEntityAux);
@@ -61,7 +53,7 @@ public class CitaService {
     }
 
     public Page<CitaEntity> getPage(Pageable oPageable, Long id_veterinario, Long id_mascota) {
-         if (id_veterinario == null) {
+        if (id_veterinario == null) {
             if (id_mascota == null) {
                 return oCitaRepository.findAll(oPageable);
             } else {
@@ -73,16 +65,12 @@ public class CitaService {
     }
 
     public Long populate(Integer amount) {
-        Long id = 1L;
-        VeterinarioEntity veterinario = oVeterinarioRepository.findById(id).orElse(null);
-        MascotaEntity mascota = oMascotaRepository.findById(id).orElse(null);
-        // Crear una fecha actual y hora actual como valores predeterminados
-        Date fecha = new Date(); // Esto crea la fecha actual
-        Time hora = new Time(System.currentTimeMillis()); // Esto crea la hora actual
-
         for (int i = 0; i < amount; i++) {
-            oCitaRepository.save(new CitaEntity(veterinario, mascota, fecha, hora));
+            oCitaRepository.save(new CitaEntity(
+                    oVeterinarioService.getOneRandom(), oMascotaService.getOneRandom(),
+                    DataGenerationHelper.getRadomDate()));
         }
         return oCitaRepository.count();
     }
+
 }

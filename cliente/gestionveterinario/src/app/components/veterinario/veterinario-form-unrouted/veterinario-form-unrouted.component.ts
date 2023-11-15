@@ -67,12 +67,18 @@ export class VeterinarioFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.oVeterinarioAjaxService.newOne(this.veterinarioForm.value).subscribe({
           next: (data: IVeterinario) => {
-            this.oVeterinario = data;
-            this.initializeForm(this.oVeterinario);
-            // avisar al usuario que se ha creado correctamente
-            console.log('Datos a enviar:', this.veterinarioForm.value);
-            this.oMatSnackBar.open("Vet has been created.", '', { duration: 2000 });
-            this.oRouter.navigate([ '/veterinario/view', this.oVeterinario.id]);
+              this.oVeterinario = data;
+              this.initializeForm(this.oVeterinario);
+              // Log para verificar el valor de data.id
+              console.log('Datos a enviar:', this.veterinarioForm.value);
+              console.log('ID del veterinario:', this.oVeterinario.id);
+      
+              // Verifica si 'id' está definido antes de navegar
+              if (data.id !== null && data.id !== undefined) {
+                  this.oRouter.navigate(['/veterinario/view', data.id]);
+              } else {
+                  console.error('No se puede navegar a la vista del veterinario porque el ID no está definido.');
+              }
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

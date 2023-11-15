@@ -53,7 +53,7 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { CryptoService } from './service/crypto.service';
 import { SessionAjaxService } from './service/session.ajax.service';
 import { AuthInterceptor } from './interceptors/auth.interceptors';
-
+import { CalendarModule } from 'primeng/calendar';
 //-- 
 //import { CryptoService } from './service/crypto.service';
 @NgModule({
@@ -105,6 +105,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptors';
     HttpClientModule,
     DialogModule,
     ConfirmDialogModule, 
+    CalendarModule,
   ],
   providers: [
     CitaAjaxService,
@@ -116,6 +117,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptors';
     ConfirmationService,
     CryptoService,
     SessionAjaxService,
+    
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

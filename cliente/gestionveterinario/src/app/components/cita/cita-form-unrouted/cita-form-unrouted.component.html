@@ -1,4 +1,4 @@
-<div *ngIf="status !== null">
+<!--<div *ngIf="status !== null">
   <div class="d-flex justify-content-center my-3">
     <div class="alert alert-danger" role="alert">
       {{status!.error.message}} - {{status!.message}}
@@ -10,26 +10,18 @@
   <div class="col-12">
     <div class="d-flex justify-content-center my-3">
       <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <mat-form-field>
-            <mat-label>Date:</mat-label>
-            <input matInput formControlName="fecha" placeholder="Date" required>
-            <mat-hint align="end">(3 to 50 characters long)</mat-hint>
-            <mat-error *ngIf="hasError('fecha', 'required')">La fecha es requerida</mat-error>
-            <mat-error *ngIf="hasError('fecha', 'minlength')">Se requiere más longitud</mat-error>
-            <mat-error *ngIf="hasError('fecha', 'maxlength')">Excede el límite</mat-error>
-          </mat-form-field>
+        
+        <div class="row mb-3">
+          <label for="fecha" class="col-sm-2 col-form-label"> Appointment datetime:</label>
+          <div class="col-sm-10">
+            <p-calendar formControlName="fecha" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"
+              [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
+            <div *ngIf="hasError('fecha', 'required')" class="text-danger"> You must
+              set a valid date
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <mat-form-field [style.width.px]=500>
-            <mat-label>Time:</mat-label>
-            <textarea matInput formControlName="hora" placeholder="Time" required></textarea>
-            <mat-hint align="end">(Máximo 1000 caracteres)</mat-hint>
-            <mat-error *ngIf="hasError('hora', 'required')">La hora es requerida</mat-error>
-            <mat-error *ngIf="hasError('hora', 'minlength')">Se requiere más longitud</mat-error>
-            <mat-error *ngIf="hasError('hora', 'maxlength')">Excede el límite</mat-error>
-          </mat-form-field>
-        </div>
+        
         <div formGroupName="vet">
           <div class="form-group">
             <mat-form-field [style.width.px]=100>
@@ -55,6 +47,61 @@
 
         <div class="text-center mt-5">
           <button mat-raised-button color="primary" type="submit" [disabled]="!citaForm.valid">Save appointment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>-->
+<div *ngIf="status !== null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      {{status!.error.message}} - {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status === null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center my-3">
+      <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+          <label for="fecha" class="col-sm-2 col-form-label"> Appointment datetime:</label>
+          <div class="col-sm-10">
+            <p-calendar formControlName="fecha" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"
+            [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
+          
+            <div *ngIf="hasError('fecha', 'required')" class="text-danger"> You must
+              set a valid date
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="veterinario">
+          <div class="form-group">
+            <mat-form-field [style.width.px]=100>
+              <mat-label>Vet:</mat-label>
+              <input matInput formControlName="id" placeholder="Vet" required readonly>
+            </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowVetsSelection()"> <i class="pi pi-search"></i>
+              Find a vet</button>
+            {{oCita.veterinario.name}} {{oCita.veterinario.surname}}
+          </div>
+        </div>
+        <div formGroupName="mascota">
+          <div class="form-group">
+            <mat-form-field [style.width.px]=100>
+              <mat-label>Pet:</mat-label>
+              <input matInput formControlName="id" placeholder="Pet" required readonly>
+            </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowPetsSelection()"> <i
+                class="pi pi-search"></i>
+              Find a pet</button>
+            {{oCita.mascota.name}}
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!citaForm.valid">Save Appointment</button>
         </div>
       </form>
     </div>

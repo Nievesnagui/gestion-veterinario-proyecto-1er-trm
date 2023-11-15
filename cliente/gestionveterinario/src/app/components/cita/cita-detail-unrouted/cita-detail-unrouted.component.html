@@ -18,13 +18,9 @@
               <td>{{oCita.id}}</td>
           </tr>
           <tr>
-              <th>Date</th>
-              <td>{{oCita.fecha}}</td>
-          </tr>
-          <tr>
-              <th>Time</th>
-              <td>{{oCita.hora}}</td>
-          </tr>
+            <th>date</th>
+            <td>{{oCita.fecha | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+        </tr>
           <tr>
               <th>Vet</th>
               <td> <a [routerLink]="['/veterinario','view',oCita.veterinario.id]">{{oCita.veterinario.name}}

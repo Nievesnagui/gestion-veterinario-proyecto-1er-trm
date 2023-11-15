@@ -10,13 +10,16 @@ import { CitaDetailUnroutedComponent } from '../cita-detail-unrouted/cita-detail
 import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 import { MascotaAjaxService } from 'src/app/service/mascota.ajax.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service';
+import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-cita-plist-unrouted',
   templateUrl: './cita-plist-unrouted.component.html',
   styleUrls: ['./cita-plist-unrouted.component.css']
 })
 export class CitaPlistUnroutedComponent implements OnInit {
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   @Input() id_veterinario: number = 0; 
   @Input() id_mascota: number = 0;
 
@@ -47,6 +50,13 @@ export class CitaPlistUnroutedComponent implements OnInit {
     if (this.id_mascota > 0) {
       this.getMascota();
     }
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    });
   }
 
   getPage(): void {
@@ -85,10 +95,9 @@ export class CitaPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-ref: DynamicDialogRef | undefined;
-
   doView(u: ICita) {
-    this.ref = this.oDialogService.open(CitaDetailUnroutedComponent, {
+    let ref: DynamicDialogRef | undefined;
+    ref = this.oDialogService.open(CitaDetailUnroutedComponent, {
       data: {
         id: u.id
       },

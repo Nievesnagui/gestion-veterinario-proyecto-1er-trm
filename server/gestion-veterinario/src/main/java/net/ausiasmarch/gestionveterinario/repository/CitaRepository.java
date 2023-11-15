@@ -13,7 +13,6 @@ public interface CitaRepository extends JpaRepository<CitaEntity, Long> {
 
     Page<CitaEntity> findByMascotaId(Long id, Pageable pageable);
 
-    /*Esto es nuevo de él */
     @Modifying
     @Query(value = "ALTER TABLE reply AUTO_INCREMENT = 1", nativeQuery = true)
     void resetAutoIncrement();

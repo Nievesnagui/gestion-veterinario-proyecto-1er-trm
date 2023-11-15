@@ -69,8 +69,7 @@ export interface IMascotaPage extends IPage<IMascota> {
 
 
 export interface ICita extends IEntity {
-    fecha: string,
-    hora: string,
+    fecha: Date,
     veterinario: IVeterinario,
     mascota: IMascota
 }

@@ -3,6 +3,7 @@ package net.ausiasmarch.gestionveterinario.service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import net.ausiasmarch.gestionveterinario.entity.MascotaEntity;
 import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
 import net.ausiasmarch.gestionveterinario.helper.DataGenerationHelper;
@@ -10,11 +11,18 @@ import net.ausiasmarch.gestionveterinario.repository.MascotaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 @Service
 public class MascotaService {
     @Autowired
     MascotaRepository oMascotaRepository;
+
+    @Autowired
+    HttpServletRequest oHttpServletRequest;
+
+    @Autowired
+    SessionService oSessionService;
 
     public MascotaEntity get(Long id) {
         return oMascotaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
@@ -23,6 +31,12 @@ public class MascotaService {
     public MascotaEntity create(MascotaEntity oMascotaEntity) {
         oMascotaEntity.setId(null);
         return oMascotaRepository.save(oMascotaEntity);
+    }
+
+    public MascotaEntity getOneRandom() {
+        oSessionService.onlyAdmins();
+        Pageable oPageable = PageRequest.of((int) (Math.random() * oMascotaRepository.count()), 1);
+        return oMascotaRepository.findAll(oPageable).getContent().get(0);
     }
 
     public MascotaEntity update(MascotaEntity oMascotaEntity) {
@@ -54,18 +68,21 @@ public class MascotaService {
     }
 
     public Long populate(Integer amount) {
-       /*  for (int i = 0; i < amount; i++) {
-            String phone="123465789";
-            oMascotaRepository.save(
-                    new MascotaEntity("name" + i, 1234568, "propietario " + i, phone, "mail@mail.com"));
-        }
-        return oMascotaRepository.count();*/
+        /*
+         * for (int i = 0; i < amount; i++) {
+         * String phone="123465789";
+         * oMascotaRepository.save(
+         * new MascotaEntity("name" + i, 1234568, "propietario " + i, phone,
+         * "mail@mail.com"));
+         * }
+         * return oMascotaRepository.count();
+         */
 
         for (int i = 0; i < amount; i++) {
 
             String name = DataGenerationHelper.getRadomMascota();
-            String propietario = DataGenerationHelper.getRadomName()+ " " + DataGenerationHelper.getRadomSurname();
-            String phone="123465789";
+            String propietario = DataGenerationHelper.getRadomName() + " " + DataGenerationHelper.getRadomSurname();
+            String phone = "123465789";
             String email = name.substring(0, 3) + propietario.substring(0, 3) + i
                     + "@ausiasmarch.net";
             oMascotaRepository.save(

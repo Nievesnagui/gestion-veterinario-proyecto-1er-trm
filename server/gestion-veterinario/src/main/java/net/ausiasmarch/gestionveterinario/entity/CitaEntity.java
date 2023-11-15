@@ -1,7 +1,8 @@
 package net.ausiasmarch.gestionveterinario.entity;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,8 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -29,40 +28,25 @@ public class CitaEntity {
     @JoinColumn(name = "id_mascota")
     private MascotaEntity mascota;
 
-    @Temporal(TemporalType.DATE) // Tipo de dato de fecha
-    @NotNull
-    private Date fecha;
 
-    @Temporal(TemporalType.TIME) // Tipo de dato de hora
-    @NotNull
-    private Time hora;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private LocalDateTime fecha;
 
-    
-
-    public CitaEntity(Long id, VeterinarioEntity veterinario, MascotaEntity mascota, @NotNull Date fecha,
-            @NotNull Time hora) {
+    public CitaEntity(Long id, VeterinarioEntity veterinario, MascotaEntity mascota, @NotNull LocalDateTime fecha) {
         this.id = id;
         this.veterinario = veterinario;
         this.mascota = mascota;
         this.fecha = fecha;
-        this.hora = hora;
     }
 
-
-
-    public CitaEntity(VeterinarioEntity veterinario, MascotaEntity mascota, @NotNull Date fecha, @NotNull Time hora) {
+    public CitaEntity(VeterinarioEntity veterinario, MascotaEntity mascota, @NotNull LocalDateTime fecha) {
         this.veterinario = veterinario;
         this.mascota = mascota;
         this.fecha = fecha;
-        this.hora = hora;
     }
-
-
 
     public CitaEntity() {
     }
-
-    
 
     public Long getId() {
         return id;
@@ -88,20 +72,12 @@ public class CitaEntity {
         this.mascota = mascota;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
-    }
-
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
     }
 
 }

@@ -8,6 +8,7 @@ import { CitaAjaxService } from 'src/app/service/cita.ajax.service';
 import { MascotaSelectionUnroutedComponent } from '../../mascota/mascota-selection-unrouted/mascota-selection-unrouted.component';
 import { VeterinarioSelectionUnroutedComponent } from '../../veterinario/veterinario-selection-unrouted/veterinario-selection-unrouted.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CALENDAR_ES } from 'src/environment/environment';
 
 @Component({
   selector: 'app-cita-form-unrouted',
@@ -19,8 +20,10 @@ export class CitaFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
 
+  es = CALENDAR_ES;
+
   citaForm!: FormGroup;
-  oCita: ICita = { veterinario: {}, mascota: {} } as ICita;
+  oCita: ICita = { fecha: new Date(Date.now()), veterinario: {}, mascota: {} } as ICita;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -38,13 +41,12 @@ export class CitaFormUnroutedComponent implements OnInit {
   initializeForm(oCita: ICita) {
     this.citaForm = this.oFormBuilder.group({
       id: [oCita.id],
-      fecha: [oCita.fecha, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
-      hora: [oCita.hora, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      fecha: [new Date(oCita.fecha), [Validators.required]],
       veterinario: this.oFormBuilder.group({
         id: [oCita.veterinario.id, Validators.required]
       }),
       mascota: this.oFormBuilder.group({
-        id: [oCita.veterinario.id, Validators.required]
+        id: [oCita.mascota.id, Validators.required]
       })
     });
   }
@@ -70,25 +72,29 @@ export class CitaFormUnroutedComponent implements OnInit {
     return this.citaForm.controls[controlName].hasError(errorName);
   }
 
+
   onSubmit() {
     if (this.citaForm.valid) {
       if (this.operation == 'NEW') {
         this.oCitaAjaxService.newOne(this.citaForm.value).subscribe({
           next: (data: ICita) => {
-            this.oCita = { "veterinario": {}, "mascota": {} } as ICita;
+            this.oCita = data;
             this.initializeForm(this.oCita);
-            // avisar al usuario que se ha creado correctamente
             console.log('Datos a enviar:', this.citaForm.value);
             this.oMatSnackBar.open("The appointment has been created.", '', { duration: 2000 });
-            this.oRouter.navigate([ '/cita/view', this.oCita.id]);
-            
+
+            // Verifica si 'id' está definido antes de navegar
+            if (this.oCita.id !== null && this.oCita.id !== undefined) {
+              this.oRouter.navigate(['/cita/view', this.oCita.id]);
+            } else {
+              console.error('No se puede navegar a la vista de la cita porque el ID no está definido.');
+            }
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
             this.oMatSnackBar.open("Can't create the appointment.", '', { duration: 2000 });
           }
-        })
-
+        });
       } else {
         this.oCitaAjaxService.updateOne(this.citaForm.value).subscribe({
           next: (data: ICita) => {
@@ -107,6 +113,7 @@ export class CitaFormUnroutedComponent implements OnInit {
     }
   }
 
+
   onShowVetsSelection() {
     this.oDynamicDialogRef = this.oDialogService.open(VeterinarioSelectionUnroutedComponent, {
       header: 'Select a Vet',
@@ -119,7 +126,7 @@ export class CitaFormUnroutedComponent implements OnInit {
     this.oDynamicDialogRef.onClose.subscribe((oVet: IVeterinario) => {
       if (oVet) {
         this.oCita.veterinario = oVet;
-        this.citaForm.controls['vet'].patchValue({ id: oVet.id })
+        this.citaForm.controls['veterinario'].patchValue({ id: oVet.id })
       }
     });
   }
@@ -136,7 +143,7 @@ export class CitaFormUnroutedComponent implements OnInit {
     this.oDynamicDialogRef.onClose.subscribe((oPet: IMascota) => {
       if (oPet) {
         this.oCita.mascota = oPet;
-        this.citaForm.controls['pet'].patchValue({ id: oPet.id })
+        this.citaForm.controls['mascota'].patchValue({ id: oPet.id })
       }
     });
   }
