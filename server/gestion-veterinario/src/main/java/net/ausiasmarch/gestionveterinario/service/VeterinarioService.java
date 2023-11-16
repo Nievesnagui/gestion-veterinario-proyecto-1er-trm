@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
 import net.ausiasmarch.gestionveterinario.entity.VeterinarioEntity;
 import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
 import net.ausiasmarch.gestionveterinario.helper.DataGenerationHelper;
@@ -47,33 +46,23 @@ public class VeterinarioService {
 
     }
 
-    public VeterinarioEntity update(VeterinarioEntity oVeterinarioEntityToSet) {
+    public VeterinarioEntity update(VeterinarioEntity oVeterinarioEntity) {
 
-        /*
-         * VeterinarioEntity oVeterinarioEntityAux =
-         * oVeterinarioRepository.findById(oVeterinarioEntity.getId())
-         * .orElseThrow(() -> new ResourceNotFoundException("Veterinario not found"));
-         * oVeterinarioEntityAux.setName(oVeterinarioEntity.getName());
-         * oVeterinarioEntityAux.setSurname(oVeterinarioEntity.getSurname());
-         * oVeterinarioEntityAux.setEmail(oVeterinarioEntity.getEmail());
-         * oVeterinarioEntityAux.setUsername(oVeterinarioEntity.getUsername());
-         * oVeterinarioEntityAux.setDni(oVeterinarioEntity.getDni());
-         * oVeterinarioEntityAux.setPhone(oVeterinarioEntity.getPhone());
-         * return oVeterinarioRepository.save(oVeterinarioEntityAux);
-         */
-        VeterinarioEntity oVeterinarioEntityFromDatabase = this.get(oVeterinarioEntityToSet.getId());
-        oSessionService.onlyAdminsOrUsersWithIisOwnData(oVeterinarioEntityFromDatabase.getId());
+        
+          VeterinarioEntity oVeterinarioEntityAux =
+          oVeterinarioRepository.findById(oVeterinarioEntity.getId())
+          .orElseThrow(() -> new ResourceNotFoundException("Veterinario not found"));
+          oVeterinarioEntityAux.setName(oVeterinarioEntity.getName());
+          oVeterinarioEntityAux.setSurname(oVeterinarioEntity.getSurname());
+          oVeterinarioEntityAux.setEmail(oVeterinarioEntity.getEmail());
+          oVeterinarioEntityAux.setUsername(oVeterinarioEntity.getUsername());
+         oVeterinarioEntityAux.setDni(oVeterinarioEntity.getDni());
+         oVeterinarioEntityAux.setPhone(oVeterinarioEntity.getPhone());
+          return oVeterinarioRepository.save(oVeterinarioEntityAux);
+        
 
-        if (oSessionService.isUser()) {
-            oVeterinarioEntityToSet.setId(null);
-            oVeterinarioEntityToSet.setRole(oVeterinarioEntityFromDatabase.getRole());
-            oVeterinarioEntityToSet.setPassword(genericPasswd);
-            return oVeterinarioRepository.save(oVeterinarioEntityToSet);
-        } else {
-            oVeterinarioEntityToSet.setId(null);
-            oVeterinarioEntityToSet.setPassword(genericPasswd);
-            return oVeterinarioRepository.save(oVeterinarioEntityToSet);
-        }
+         
+   
 
     }
     /*
