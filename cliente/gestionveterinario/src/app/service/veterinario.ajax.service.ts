@@ -46,4 +46,8 @@ export class VeterinarioAjaxService {
         return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
     }
 
+    getByUsername(username: string): Observable<IVeterinario> {
+        return this.oHttpClient.get<IVeterinario>(this.sUrl + "/byUsername/" + username);
+    }
+
 }

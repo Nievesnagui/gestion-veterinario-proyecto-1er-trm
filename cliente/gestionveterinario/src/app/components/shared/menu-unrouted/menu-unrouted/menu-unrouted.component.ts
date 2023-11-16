@@ -1,7 +1,11 @@
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { IVeterinario, SessionEvent } from 'src/app/model/model.interfaces';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service';
+import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 
 @Component({
     selector: 'app-menu-unrouted',
@@ -9,70 +13,44 @@ import { SessionAjaxService } from 'src/app/service/session.ajax.service';
     styleUrls: ['./menu-unrouted.component.css']
 })
 export class MenubarUnroutedComponent implements OnInit {
-    items: MenuItem[] | undefined;
-
-    constructor(private sessionService: SessionAjaxService) {}
-
+    strUserName: string = "";
+    oSessionUser: IVeterinario | null = null;
+  
+    constructor(
+      private oSessionService: SessionAjaxService,
+      private oVeterinarioAjaxService: VeterinarioAjaxService
+    ) {
+      this.strUserName = oSessionService.getUsername();
+      this.oVeterinarioAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
+        next: (oUser: IVeterinario) => {
+          this.oSessionUser = oUser;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      });
+    }
+  
     ngOnInit() {
-        this.items = [
-            {
-                label: 'Home', //Por hacer
-                icon: 'pi pi-fw pi-home',
-                routerLink: 'home'
-            },
-            {
-                label: 'Vets',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'New',
-                        icon: 'pi pi-fw pi-user-plus',
-                        routerLink: 'veterinario/new'
-                    },
-                    {
-                        label: 'List',
-                        icon: 'pi pi-fw pi-bars',
-                        routerLink: 'veterinario/plist'
-                    }
-                ]
-            },
-            {
-                label: 'Pets',
-                icon: 'pi pi-fw pi-heart',
-                items: [
-                    {
-                        label: 'New',
-                        icon: 'pi pi-fw pi-plus-circle',
-                        routerLink: 'mascota/new'
-                    },
-                    {
-                        label: 'List',
-                        icon: 'pi pi-fw pi-bars',
-                        routerLink: 'mascota/plist'
-                    }
-                ]
-            },
-            {
-                label: 'Appointments',
-                icon: 'pi pi-fw pi-file',
-                items: [
-                    {
-                        label: 'New',
-                        icon: 'pi pi-fw pi-plus-circle',
-                        routerLink: 'cita/new'
-                    },
-                    {
-                        label: 'List',
-                        icon: 'pi pi-fw pi-bars',
-                        routerLink: 'cita/plist'
-                    }
-                ]
-            },
-            {
-                label: this.sessionService.isAuthenticated() ? 'Quit' : 'Login',
-                icon: 'pi pi-fw pi-power-off',
-                routerLink: this.sessionService.isAuthenticated() ? 'logout' : 'login',
-            }
-        ];
+      this.oSessionService.on().subscribe({
+        next: (data: SessionEvent) => {
+          if (data.type == 'login') {
+            this.strUserName = this.oSessionService.getUsername();
+            this.oVeterinarioAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
+              next: (oUser: IVeterinario) => {
+                this.oSessionUser = oUser;
+              },
+              error: (error: HttpErrorResponse) => {
+                console.log(error);
+              }
+            });
+          }
+          if (data.type == 'logout') {
+            this.strUserName = "";
+          }
+        }
+      });
+  
+  
     }
 }

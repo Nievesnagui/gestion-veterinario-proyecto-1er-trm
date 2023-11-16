@@ -24,10 +24,10 @@ import { VeterinarioPlistUnroutedComponent } from './components/veterinario/vete
 import { VeterinarioFormUnroutedComponent } from './components/veterinario/veterinario-form-unrouted/veterinario-form-unrouted.component';
 import { VeterinairoDetailUnroutedComponent } from './components/veterinario/veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
 import { PaginatorModule } from 'primeng/paginator';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DialogService } from 'primeng/dynamicdialog';
-import { ConfirmationService } from 'primeng/api';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MascotaViewRoutedComponent } from './components/mascota/mascota-view-routed/mascota-view-routed.component';
@@ -54,14 +54,21 @@ import { CryptoService } from './service/crypto.service';
 import { SessionAjaxService } from './service/session.ajax.service';
 import { AuthInterceptor } from './interceptors/auth.interceptors';
 import { CalendarModule } from 'primeng/calendar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { TableModule } from 'primeng/table';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TooltipModule } from 'primeng/tooltip';
 //-- 
 //import { CryptoService } from './service/crypto.service';
 @NgModule({
   declarations: [
-   AppComponent,
-   HomeRoutedComponent,
-   MenubarUnroutedComponent,
-   FooterUnroutedComponent,
+    AppComponent,
+    HomeRoutedComponent,
+    MenubarUnroutedComponent,
+    FooterUnroutedComponent,
     //--
     VeterinarioViewRoutedComponent,
     VeterinarioPlistRoutedComponent,
@@ -97,27 +104,41 @@ import { CalendarModule } from 'primeng/calendar';
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
-    BrowserAnimationsModule,
-    MatRadioModule,
-    PaginatorModule,
     ReactiveFormsModule,
-    MatInputModule,
     HttpClientModule,
     DialogModule,
-    ConfirmDialogModule, 
+    FormsModule,
+    //--
+    BrowserAnimationsModule,
+    DynamicDialogModule,
+    PaginatorModule,
+    TableModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
     CalendarModule,
+    TooltipModule,
+    //Mat
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
+
   ],
   providers: [
     CitaAjaxService,
-    VeterinarioAjaxService, 
+    VeterinarioAjaxService,
     MascotaAjaxService,
-    MatSnackBar, 
+    MatSnackBar,
     MatFormFieldModule,
     DialogService,
     ConfirmationService,
     CryptoService,
     SessionAjaxService,
-    
+    MessageService,
+
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

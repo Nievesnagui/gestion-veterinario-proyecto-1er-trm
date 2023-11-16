@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
+import { VeterinarioAjaxService } from './veterinario.ajax.service';
 
 
 export interface SessionEvent {
@@ -19,17 +20,15 @@ export interface IToken {
 @Injectable()
 export class SessionAjaxService {
 
+
     sUrl: string = API_URL + "/session";
 
     subjectSession = new Subject<SessionEvent>();
 
     constructor(
-        private oHttpClient: HttpClient
+        private oHttpClient: HttpClient,
+        private oVeterinarioAjaxService: VeterinarioAjaxService
     ) { }
-
-    isAuthenticated(): boolean {
-        return this.getToken() !== null;
-    }
 
     private parseJwt(token: string): IToken {
         var base64Url = token.split('.')[1];
@@ -85,13 +84,11 @@ export class SessionAjaxService {
         }
     }
 
-    on(event: SessionEvent): Observable<SessionEvent> {
+    on(): Observable<SessionEvent> {
         return this.subjectSession.asObservable();
     }
 
     emit(event: SessionEvent) {
         this.subjectSession.next(event);
     }
-
-
 }
