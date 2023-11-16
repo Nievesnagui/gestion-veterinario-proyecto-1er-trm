@@ -19,6 +19,8 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
+  { path: 'login', component: LoginRoutedComponent },
+  { path: 'logout', component: LogoutRoutedComponent },
 
   { path: 'veterinario/view/:id', component: VeterinarioViewRoutedComponent },
   { path: 'veterinario/plist', component: VeterinarioPlistRoutedComponent },
@@ -39,8 +41,7 @@ const routes: Routes = [
   { path: 'cita/new', component: CitaNewRoutedComponent },
   { path: 'cita/edit/:id', component: CitaEditRoutedComponent },
   
-  { path: 'login', component: LoginRoutedComponent },
-  { path: 'logout', component: LogoutRoutedComponent },
+
 
   
 ];

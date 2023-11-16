@@ -69,4 +69,9 @@ public class VeterinarioApi {
         return ResponseEntity.ok(oVeterinarioService.getPageByRepliesNumberDesc(oPageable));
     }
 
+    @GetMapping("/byUsername/{username}")
+    public ResponseEntity<VeterinarioEntity> get(@PathVariable("username") String username) {
+        return ResponseEntity.ok(oVeterinarioService.getByUsername(username));
+    }
+
 }

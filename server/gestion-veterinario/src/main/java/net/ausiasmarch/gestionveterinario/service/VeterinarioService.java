@@ -33,6 +33,11 @@ public class VeterinarioService {
                 .orElseThrow(() -> new ResourceNotFoundException("Veterinario not found"));
     }
 
+    public VeterinarioEntity getByUsername(String username) {
+        return oVeterinarioRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found by username"));
+    }
+
     public Long create(VeterinarioEntity oVeterinarioEntity) {
         oSessionService.onlyAdmins();
         oVeterinarioEntity.setId(null);

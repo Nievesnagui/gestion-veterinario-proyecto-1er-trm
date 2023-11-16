@@ -51,7 +51,7 @@
             <tr>
                 <th>citas</th>
                 <td>
-                   <a [routerLink]="['veterinario','plist','byuser',oVet.id]"
+                   <a [routerLink]="['cita','plist','byvet',oVet.id]"
                         *ngIf="oVet.citas>0">{{oVet.citas}}</a>
                     <span *ngIf="oVet.citas==0">0</span>
                 </td>
