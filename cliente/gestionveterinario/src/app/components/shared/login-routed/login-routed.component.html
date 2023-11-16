@@ -1,40 +1,41 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <div class="d-flex justify-content-center mb-3">
-        <h1 class="my-5">Login Form</h1>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="login-form">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Username" formControlName="username">
-      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Username is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="Password" formControlName="password">
-      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
-      <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters length</mat-error>
-    </mat-form-field>
-    <div class="control-group text-center">
-    <button class="mx-1" mat-raised-button type="submit" color="primary">Iniciar sesión</button>
-    <button class="mx-1" mat-raised-button type="button" color="warn" (click)="onReset()">Reset</button>
-    </div>
-  </form>
-
-  <div class="col-12 mt-5">
-    <div class="card">
-      <div class="card-body">
-        <div class="control-group text-center mt-3">
-          <button class="btn btn-danger m-2" (click)="loginAdmin()">log in as admin</button>
-          <button class="btn btn-success m-2" (click)="loginUser()">log in as user</button>
+<div class="card-container login-form ">
+  <div class="container">
+    <div class="log-card">
+      <p class="heading">Welcome Back</p>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <div class="input-container">
+            <p class="text">Username</p>
+            <input class="input" type="username" placeholder="Username" formControlName="username">
+            <mat-error *ngIf="loginForm.get('username')?.hasError('required')" class="error-message">Username is
+              required</mat-error>
+          </div>
+          <div class="input-container">
+            <p class="text">Password</p>
+            <input class="input" type="password" placeholder="Enter Password" formControlName="password">
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')" class="error-message">Password is
+              required</mat-error>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')" class="error-message">Password must be
+              at
+              least 6 characters
+              length</mat-error>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn" mat-raised-button type="submit" color="primary">Sign In</button>
+          <button class="btn" mat-raised-button type="button" color="warn" (click)="onReset()">Reset</button>
+        </div>
+      </form>
+      <div class="col-12 mt-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="control-group text-center mt-3">
+              <button class="btn btn-danger m-2" (click)="loginAdmin()">log in as admin</button>
+              <button class="btn btn-success m-2" (click)="loginUser()">log in as user</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>

@@ -45,8 +45,9 @@
             <span *ngIf="u.role==false">Admin</span>
             <span *ngIf="u.role==true">User</span>
           </td>
-          <td class="text-center">
-         {{u.citas}} 
+          <td >
+            <a class="text-center" [routerLink]="['/cita','plist','byvet',u.id]" *ngIf="u.citas>0">{{u.citas}} </a>
+            <span *ngIf="u.citas==0">0</span>
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

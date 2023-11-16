@@ -50,4 +50,8 @@ export class VeterinarioAjaxService {
         return this.oHttpClient.get<IVeterinario>(this.sUrl + "/byUsername/" + username);
     }
 
+    empty(): Observable<number> {
+        return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+    }
+
 }

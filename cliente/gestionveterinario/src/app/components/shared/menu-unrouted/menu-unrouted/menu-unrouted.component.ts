@@ -15,6 +15,8 @@ import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service
 export class MenubarUnroutedComponent implements OnInit {
     strUserName: string = "";
     oSessionUser: IVeterinario | null = null;
+
+    isMenuOpen: boolean = false;
   
     constructor(
       private oSessionService: SessionAjaxService,
@@ -52,5 +54,10 @@ export class MenubarUnroutedComponent implements OnInit {
       });
   
   
+    }  
+   
+
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
     }
 }

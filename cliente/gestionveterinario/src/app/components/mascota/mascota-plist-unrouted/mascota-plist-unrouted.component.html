@@ -39,7 +39,8 @@
           <td>{{u.phone}}</td>
           <td>{{u.email}}</td>
           <td class="text-center">
-            {{u.citas}}
+            <a class="text-center" [routerLink]="['/cita','plist','bypet',u.id]" *ngIf="u.citas>0">{{u.citas}} </a>
+            <span *ngIf="u.citas==0">0</span>
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
