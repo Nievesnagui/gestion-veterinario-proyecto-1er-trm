@@ -17,8 +17,15 @@
   </div>
 
 
-  <div class="mb-5 ">
-    <table class="table table-bordered table-striped table-hover table-sm">
+
+<!---->
+
+
+<div class="container">
+  <h2>Pets List</h2>
+
+  <div class="table-wrapper">
+    <table class="fl-table">
       <thead>
         <tr>
           <th (click)="doOrder('id')">ID</th>
@@ -28,10 +35,11 @@
           <th (click)="doOrder('phone')">Phone</th>
           <th (click)="doOrder('email')">Email</th>
           <th>Citas</th>
+          <th>Tools</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let u of oPage?.content" class="align-middle">
+        <tr class="table-row" *ngFor="let u of oPage?.content" class="align-middle">
           <td class="text-end"><strong>{{u.id}}</strong></td>
           <td>{{u.name}}</td>
           <td>{{u.chip}}</td>
@@ -54,11 +62,12 @@
             </div>
           </td>
         </tr>
-      </tbody>
+      <tbody>
     </table>
   </div>
 </div>
 
+<!---->
 <p-confirmDialog #cd [style]="{ width: '30vw' }">
   <ng-template pTemplate="header">
     <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Pet removal</h5>
@@ -74,3 +83,5 @@
     <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
   </ng-template>
 </p-confirmDialog>
+
+

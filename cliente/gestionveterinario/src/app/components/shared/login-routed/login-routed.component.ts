@@ -62,7 +62,7 @@ export class LoginRoutedComponent implements OnInit {
 
   loginUser() {
     this.loginForm.setValue({
-      username: 'useruser',
+      username: 'usuario',
       password: 'foxforum'
       
     })
