@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -7,13 +7,18 @@ import { PaginatorState } from 'primeng/paginator';
 import { IMascota, IMascotaPage } from 'src/app/model/model.interfaces';
 import { MascotaAjaxService } from 'src/app/service/mascota.ajax.service';
 import { MascotaDetailUnroutedComponent } from '../mascota-detail-unrouted/mascota-detail-unrouted.component';
+import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-mascota-plist-unrouted',
   templateUrl: './mascota-plist-unrouted.component.html',
   styleUrls: ['./mascota-plist-unrouted.component.css']
 })
 export class MascotaPlistUnroutedComponent implements OnInit {
+
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+
 
   oPage: IMascotaPage | undefined;
   orderField: string = "id";
@@ -31,6 +36,13 @@ export class MascotaPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    });
   }
 
   getPage(): void {
@@ -69,7 +81,7 @@ export class MascotaPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'View of vet',
+      header: 'View of pet',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -81,19 +93,19 @@ export class MascotaPlistUnroutedComponent implements OnInit {
     this.oMascotaToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The vet has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open("The pet has been removed.", '', { duration: 2000 });
         this.oMascotaAjaxService.removeOne(this.oMascotaToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The vet hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open("The pet hasn't been removed.", "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The vet hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open("The pet hasn't been removed.", "", { duration: 2000 });
       }
     });
   }
