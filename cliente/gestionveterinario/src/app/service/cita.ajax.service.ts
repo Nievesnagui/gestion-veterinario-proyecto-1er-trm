@@ -30,7 +30,7 @@ export class CitaAjaxService {
         }
 
         return this.oHttpClient.get<ICitaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlVet + strUrlPet);
-        console.log(this.oHttpClient.get<ICitaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlVet + strUrlPet));
+       
     }
 
     removeOne(id: number | undefined): Observable<number> {

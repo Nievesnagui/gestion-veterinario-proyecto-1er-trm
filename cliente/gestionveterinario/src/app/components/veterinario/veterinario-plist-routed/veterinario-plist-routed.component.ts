@@ -6,6 +6,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-veterinario-plist-routed',
   templateUrl: './veterinario-plist-routed.component.html',
   styleUrls: ['./veterinario-plist-routed.component.css']
@@ -44,7 +45,7 @@ export class VeterinarioPlistRoutedComponent implements OnInit {
       message: 'Are you sure that you want to remove all the vets?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log(" confirmar");
+        console.log(" confirmado");
         this.oVeterinarioAjaxService.empty().subscribe({
           next: (oResponse: number) => {
             this.oMatSnackBar.open("Now there are " + oResponse + " vets", '', { duration: 2000 });

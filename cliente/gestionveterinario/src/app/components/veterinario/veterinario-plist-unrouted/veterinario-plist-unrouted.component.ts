@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
@@ -7,13 +7,17 @@ import { IVeterinario, IVeterinarioPage } from 'src/app/model/model.interfaces';
 import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { VeterinairoDetailUnroutedComponent } from '../veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
+import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-veterinario-plist-unrouted',
   templateUrl: './veterinario-plist-unrouted.component.html',
   styleUrls: ['./veterinario-plist-unrouted.component.css']
 })
 export class VeterinarioPlistUnroutedComponent implements OnInit {
+
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
 
   oPage: IVeterinarioPage | undefined;
   orderField: string = "id";
@@ -31,6 +35,13 @@ export class VeterinarioPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    });
   }
 
   getPage(): void {
@@ -38,7 +49,6 @@ export class VeterinarioPlistUnroutedComponent implements OnInit {
       next: (data: IVeterinarioPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
