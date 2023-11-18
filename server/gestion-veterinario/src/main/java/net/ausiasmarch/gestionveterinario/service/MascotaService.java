@@ -67,9 +67,9 @@ public class MascotaService {
     public Page<MascotaEntity> getPage(Pageable oPageable) {
         return oMascotaRepository.findAll(oPageable);
     }
-/*
-    public Page<MascotaEntity> getPageByRepliesNumberDesc(Pageable oPageable) {
-        return oMascotaRepository.findPetsByRepliesNumberDescFilter(oPageable);
+/* 
+    public Page<MascotaEntity> getPageByCitasNumberDesc(Pageable oPageable) {
+        return oMascotaRepository.findPetsByCitasNumberDesc(oPageable);
     } */
     public Long populate(Integer amount) {
         for (int i = 0; i < amount; i++) {
