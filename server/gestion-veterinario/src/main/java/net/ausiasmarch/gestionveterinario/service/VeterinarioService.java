@@ -123,11 +123,11 @@ public class VeterinarioService {
         // oVeterinarioRepository.resetAutoIncrement();
         VeterinarioEntity oVeterinarioEntity1 = new VeterinarioEntity("Admin", "Apellido", "mail@mail.com",
                 "useradmin", "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", "32569874A",
-                "658945123", true);
+                "658945123", false);
         oVeterinarioRepository.save(oVeterinarioEntity1);
         oVeterinarioEntity1 = new VeterinarioEntity("User", "Apellido", "mail@mail.com",
                 "useruser", "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", "32569874A",
-                "658945123", false);
+                "658945123", true);
         oVeterinarioRepository.save(oVeterinarioEntity1);
         return oVeterinarioRepository.count();
     }
