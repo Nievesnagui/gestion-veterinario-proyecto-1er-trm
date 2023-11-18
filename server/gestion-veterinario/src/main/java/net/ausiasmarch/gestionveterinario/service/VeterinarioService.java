@@ -93,7 +93,7 @@ public class VeterinarioService {
     }
 
     public Page<VeterinarioEntity> getPageByRepliesNumberDesc(Pageable oPageable) {
-        return oVeterinarioRepository.findUsersByRepliesNumberDescFilter(oPageable);
+        return oVeterinarioRepository.findVetssByCitasNumberDescFilter(oPageable);
     }
 
     public Long populate(Integer amount) {

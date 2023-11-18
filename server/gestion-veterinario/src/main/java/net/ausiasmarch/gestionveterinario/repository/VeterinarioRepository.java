@@ -28,11 +28,11 @@ public interface VeterinarioRepository extends JpaRepository<VeterinarioEntity, 
 
     Optional<VeterinarioEntity> findByUsernameAndPassword(String username, String password);
 
-    @Query(value = "SELECT u.*,count(r.id) FROM user u, reply r WHERE u.id = r.id_user GROUP BY u.id ORDER BY COUNT(u.id) desc", nativeQuery = true)
-    Page<VeterinarioEntity> findUsersByRepliesNumberDescFilter(Pageable pageable);
+    @Query(value = "SELECT u.*,count(r.id) FROM veterinario u, cita r WHERE u.id = r.id_veterinario GROUP BY u.id ORDER BY COUNT(u.id) desc", nativeQuery = true)
+    Page<VeterinarioEntity> findVetssByCitasNumberDescFilter(Pageable pageable);
 
     @Modifying
-    @Query(value = "ALTER TABLE user AUTO_INCREMENT = 1", nativeQuery = true)
+    @Query(value = "ALTER TABLE vet AUTO_INCREMENT = 1", nativeQuery = true)
     void resetAutoIncrement();
 
 }

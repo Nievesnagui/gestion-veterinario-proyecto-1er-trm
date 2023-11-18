@@ -67,18 +67,11 @@ public class MascotaService {
     public Page<MascotaEntity> getPage(Pageable oPageable) {
         return oMascotaRepository.findAll(oPageable);
     }
-
+/*
+    public Page<MascotaEntity> getPageByRepliesNumberDesc(Pageable oPageable) {
+        return oMascotaRepository.findPetsByRepliesNumberDescFilter(oPageable);
+    } */
     public Long populate(Integer amount) {
-        /*
-         * for (int i = 0; i < amount; i++) {
-         * String phone="123465789";
-         * oMascotaRepository.save(
-         * new MascotaEntity("name" + i, 1234568, "propietario " + i, phone,
-         * "mail@mail.com"));
-         * }
-         * return oMascotaRepository.count();
-         */
-
         for (int i = 0; i < amount; i++) {
 
             String name = DataGenerationHelper.getRadomMascota();

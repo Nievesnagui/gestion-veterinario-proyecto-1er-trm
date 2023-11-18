@@ -61,6 +61,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { TableModule } from 'primeng/table';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TooltipModule } from 'primeng/tooltip';
+import { UserCitaPlistUnroutedComponent } from './components/cita/user-cita-plist-unrouted/user-cita-plist-unrouted.component';
+import { UserCitaDetailUnroutedComponent } from './components/cita/user-cita-detail-unrouted/user-cita-detail-unrouted.component';
+import { UserCitaFormUnroutedComponent } from './components/cita/user-cita-form-unrouted/user-cita-form-unrouted.component';
 //-- 
 //import { CryptoService } from './service/crypto.service';
 @NgModule({
@@ -96,6 +99,9 @@ import { TooltipModule } from 'primeng/tooltip';
     CitaFormUnroutedComponent,
     CitaEditRoutedComponent,
     CitaDetailUnroutedComponent,
+    UserCitaPlistUnroutedComponent,
+    UserCitaDetailUnroutedComponent,
+    UserCitaFormUnroutedComponent,
     //--
     LoginRoutedComponent,
     LogoutRoutedComponent,
