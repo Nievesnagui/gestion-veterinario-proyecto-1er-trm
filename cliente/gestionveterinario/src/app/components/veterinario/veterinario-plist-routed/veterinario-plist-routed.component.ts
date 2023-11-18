@@ -39,13 +39,11 @@ export class VeterinarioPlistRoutedComponent implements OnInit {
   }
 
   doEmpty($event: Event) {
-    console.log("pre confirmar");
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget, 
       message: 'Are you sure that you want to remove all the vets?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log(" confirmado");
         this.oVeterinarioAjaxService.empty().subscribe({
           next: (oResponse: number) => {
             this.oMatSnackBar.open("Now there are " + oResponse + " vets", '', { duration: 2000 });

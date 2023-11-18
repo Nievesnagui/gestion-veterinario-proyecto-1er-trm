@@ -36,7 +36,10 @@ public class MascotaApi {
     public ResponseEntity<MascotaEntity> create(@RequestBody @Valid MascotaEntity oMascotaEntity) {
         return ResponseEntity.ok(oMascotaService.create(oMascotaEntity));
     }
-
+    @DeleteMapping("/empty")
+    public ResponseEntity<Long> empty() {
+        return ResponseEntity.ok(oMascotaService.empty());
+    }
     @PutMapping("")
     public ResponseEntity<MascotaEntity> update(@RequestBody MascotaEntity oMascotaEntity) {
         return ResponseEntity.ok(oMascotaService.update(oMascotaEntity));

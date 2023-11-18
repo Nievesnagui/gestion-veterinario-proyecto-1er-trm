@@ -2,6 +2,7 @@ package net.ausiasmarch.gestionveterinario.service;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.servlet.http.HttpServletRequest;
 import net.ausiasmarch.gestionveterinario.entity.MascotaEntity;
@@ -82,12 +83,24 @@ public class MascotaService {
 
             String name = DataGenerationHelper.getRadomMascota();
             String propietario = DataGenerationHelper.getRadomName() + " " + DataGenerationHelper.getRadomSurname();
-            String phone = "123465789";
+            String phone = "625413285";
             String email = name.substring(0, 3) + propietario.substring(0, 3) + i
                     + "@ausiasmarch.net";
             oMascotaRepository.save(
                     new MascotaEntity(name, 1234568, propietario, phone, email));
         }
+        return oMascotaRepository.count();
+    }
+
+    @Transactional
+    public Long empty() {
+        oSessionService.onlyAdmins();
+        oMascotaRepository.deleteAll();
+        MascotaEntity oMascotaEntity = new MascotaEntity("Bollito", 12345678, "Pepe", "647512369", "mail@correo.es");
+        oMascotaRepository.save(oMascotaEntity);
+        oMascotaEntity = new MascotaEntity("Micho", 12345678, "Juan", "647512369", "mail@correo.es");
+        oMascotaRepository.save(oMascotaEntity);
+
         return oMascotaRepository.count();
     }
 }

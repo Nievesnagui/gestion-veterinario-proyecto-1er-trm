@@ -48,7 +48,7 @@ public class CitaApi {
         return ResponseEntity.ok(oCitaService.delete(id));
 
     }
-
+    
      @GetMapping("")
     public ResponseEntity<Page<CitaEntity>> getPage(
             Pageable oPageable,
