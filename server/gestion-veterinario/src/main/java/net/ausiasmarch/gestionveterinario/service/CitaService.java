@@ -2,8 +2,10 @@ package net.ausiasmarch.gestionveterinario.service;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.ausiasmarch.gestionveterinario.entity.CitaEntity;
+import net.ausiasmarch.gestionveterinario.entity.MascotaEntity;
 import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
 import net.ausiasmarch.gestionveterinario.helper.DataGenerationHelper;
 import net.ausiasmarch.gestionveterinario.repository.CitaRepository;
@@ -20,6 +22,9 @@ public class CitaService {
 
     @Autowired
     MascotaService oMascotaService;
+
+    @Autowired
+    SessionService oSessionService;
 
     public CitaEntity get(Long id) {
         return oCitaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
@@ -72,5 +77,17 @@ public class CitaService {
         }
         return oCitaRepository.count();
     }
+  @Transactional
+    public Long empty() {
+        oSessionService.onlyAdmins();
+        oCitaRepository.deleteAll();
+        CitaEntity oCitaEntity = new CitaEntity(oVeterinarioService.getOneRandom(), oMascotaService.getOneRandom(),
+                    DataGenerationHelper.getRadomDate());
+        oCitaRepository.save(oCitaEntity);
+        oCitaEntity = new CitaEntity(oVeterinarioService.getOneRandom(), oMascotaService.getOneRandom(),
+                    DataGenerationHelper.getRadomDate());
+        oCitaRepository.save(oCitaEntity);
 
+        return oCitaRepository.count();
+    }
 }

@@ -48,7 +48,10 @@ public class CitaApi {
         return ResponseEntity.ok(oCitaService.delete(id));
 
     }
-    
+    @DeleteMapping("/empty")
+    public ResponseEntity<Long> empty() {
+        return ResponseEntity.ok(oCitaService.empty());
+    }
      @GetMapping("")
     public ResponseEntity<Page<CitaEntity>> getPage(
             Pageable oPageable,
