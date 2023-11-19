@@ -1,7 +1,6 @@
 .card-container {
     width: 450px;
     height: auto;
-    background: transparent;
     position: relative;
     margin: 0 auto;
   }
@@ -26,6 +25,7 @@
     backdrop-filter: blur(5px);
     padding: 20px;
     height: auto; 
+    background-color: rgba(255, 255, 255, 0.781);
   }
   
   .text {
@@ -49,7 +49,8 @@
   }
   
   .btn:hover {
-    background-color: #76149cc9;
+    background-color: #2e5c3569;
+
   }
   
 
@@ -61,3 +62,43 @@
   .out{
     background-color: #f32828d8;
   }
+
+
+
+.fondo {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.fondo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("../../../../../imgs/wallpaperflare.com_wallpaper.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(5px); /* Ajusta el valor del desenfoque según tus preferencias */
+}
+
+.container-fluid {
+  position: relative; /* Asegura que los elementos dentro del contenedor respeten la posición relativa */
+}
+
+
+.row {
+  position: relative; /* Asegura que los elementos dentro de la fila respeten la posición relativa */
+}
+
+.col-xxl-12 {
+  z-index: 1; /* Asegura que los elementos dentro de la columna estén encima del fondo */
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.781);
+}

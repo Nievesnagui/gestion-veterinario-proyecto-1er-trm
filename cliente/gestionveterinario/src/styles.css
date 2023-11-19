@@ -15,6 +15,7 @@
 @import 'primeng/resources/primeng.min.css';
 @import 'primeicons/primeicons.css';
 
+@import "bootswatch/dist/minty/bootstrap.min.css";
 
 html,
 body {

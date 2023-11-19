@@ -58,7 +58,7 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
   oMascota: IMascota | null = null; 
   orderField: string = "id";
   orderDirection: string = "desc";
-  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 6, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oCitaToRemove: ICita | null = null;
 
@@ -192,8 +192,9 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
         data: {
           id_thread: this.id_mascota_filter,
         },
-        header: 'Post a new pet',
+        header: 'Post a new appointment',
         width: '70%',
+        height: '70%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
         maximizable: false
