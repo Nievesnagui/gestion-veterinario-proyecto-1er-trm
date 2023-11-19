@@ -20,6 +20,8 @@ import { CitaFormUnroutedComponent } from '../cita-form-unrouted/cita-form-unrou
 })
 export class UserCitaPlistUnroutedComponent implements OnInit {
 
+  strUserName: string = "";
+  oSessionUser: IVeterinario | null = null;
   @Input()
   set id_veterinario(value: number) {
     if (value) {
@@ -68,7 +70,15 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
     public oDialogService: DialogService,
     private oConfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
-  ) { }
+  ) { this.strUserName = oSessionService.getUsername();
+    this.oVeterinarioAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
+      next: (oUser: IVeterinario) => {
+        this.oSessionUser = oUser;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    }); }
   citaForm: FormGroup = new FormGroup({
     fecha: new FormControl(null, [Validators.required]), // Ajusta los validators según tus necesidades
     veterinario: new FormGroup({

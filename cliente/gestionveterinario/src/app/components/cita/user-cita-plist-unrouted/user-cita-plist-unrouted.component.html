@@ -8,9 +8,9 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between">
-    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} appontments</h5>
+    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} appointments</h5>
     <button type="button" class="btn btn-outline-primary" (click)="postNewCita()"
-      *ngIf="oSessionService.isSessionActive()">Post new appointment</button>
+      *ngIf="strUserName && oSessionUser?.role==false">Post new appointment</button>
   </div>
   <br>
  <div class="d-flex justify-content-center m-1">
