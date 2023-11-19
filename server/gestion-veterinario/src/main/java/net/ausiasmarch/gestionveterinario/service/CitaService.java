@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.ausiasmarch.gestionveterinario.entity.CitaEntity;
-import net.ausiasmarch.gestionveterinario.entity.MascotaEntity;
 import net.ausiasmarch.gestionveterinario.exception.ResourceNotFoundException;
 import net.ausiasmarch.gestionveterinario.helper.DataGenerationHelper;
 import net.ausiasmarch.gestionveterinario.repository.CitaRepository;

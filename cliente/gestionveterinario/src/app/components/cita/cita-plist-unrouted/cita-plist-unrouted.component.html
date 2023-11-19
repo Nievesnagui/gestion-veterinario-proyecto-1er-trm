@@ -7,13 +7,13 @@
 </div>
 
 <div *ngIf="status==null">
-  <div class="d-flex justify-content-end mb-3"><!--
+  <div class="d-flex justify-content-end mb-3">
     <h3 *ngIf="id_veterinario>0">Filtered by vet ({{id_veterinario}} - {{oVet?.name}}) <a type="button"
         class="btn btn-danger btn-sm" *ngIf="id_veterinario>0" [routerLink]="['/cita','plist']">Reset filter</a>
     </h3>
-    <h3 *ngIf="id_mascota>0">Filtered by vet ({{id_mascota}} - {{oPet?.name}}) <a type="button"
+    <h3 *ngIf="id_mascota>0">Filtered by pet ({{id_mascota}} - {{oPet?.name}}) <a type="button"
         class="btn btn-danger btn-sm" *ngIf="id_mascota>0" [routerLink]="['/cita','plist']">Reset filter</a>
-    </h3>-->
+    </h3>
     <h3 *ngIf="!(id_mascota>0)&&!(id_veterinario>0)">No active filter</h3>
 
     <h6>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} appointments.</h6>

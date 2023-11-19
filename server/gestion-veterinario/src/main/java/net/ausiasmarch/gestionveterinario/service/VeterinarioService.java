@@ -92,7 +92,7 @@ public class VeterinarioService {
         return oVeterinarioRepository.findAll(oPageable);
     }
 
-    public Page<VeterinarioEntity> getPageByRepliesNumberDesc(Pageable oPageable) {
+    public Page<VeterinarioEntity> getPageByCitasNumberDesc(Pageable oPageable) {
         return oVeterinarioRepository.findVetssByCitasNumberDescFilter(oPageable);
     }
 

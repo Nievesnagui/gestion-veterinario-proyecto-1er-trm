@@ -64,9 +64,9 @@ public class VeterinarioApi {
         return ResponseEntity.ok(oVeterinarioService.empty());
     }
 
-    @GetMapping("/byRepliesNumberDesc")
-    public ResponseEntity<Page<VeterinarioEntity>> getPageByRepliesNumberDesc(Pageable oPageable) {
-        return ResponseEntity.ok(oVeterinarioService.getPageByRepliesNumberDesc(oPageable));
+    @GetMapping("/byCitasNumberDesc")
+    public ResponseEntity<Page<VeterinarioEntity>> getPageByCitasNumberDesc(Pageable oPageable) {
+        return ResponseEntity.ok(oVeterinarioService.getPageByCitasNumberDesc(oPageable));
     }
 
     @GetMapping("/byUsername/{username}")
