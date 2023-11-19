@@ -57,8 +57,6 @@ public class CitaApi {
             Pageable oPageable,
             @RequestParam(value = "id_veterinario", defaultValue = "", required = false) Long id_veterinario,
             @RequestParam(value = "id_mascota", defaultValue = "", required = false) Long id_mascota) {
-                System.out.println("id_veterinario: " + id_veterinario);
-                System.out.println("id_mascota: " + id_mascota);
             
         return ResponseEntity.ok(oCitaService.getPage(oPageable, id_veterinario, id_mascota));
     }
