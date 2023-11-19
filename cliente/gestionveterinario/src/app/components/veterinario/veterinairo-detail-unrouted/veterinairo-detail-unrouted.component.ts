@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IVeterinario } from 'src/app/model/model.interfaces';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service';
 import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class VeterinairoDetailUnroutedComponent implements OnInit {
 
   constructor(
     private oVeterinarioAjaxService: VeterinarioAjaxService,
+    private oSessionService: SessionAjaxService,
     @Optional() public ref:DynamicDialogRef,
     @Optional() public config:DynamicDialogConfig
   ) {     
@@ -29,8 +31,8 @@ export class VeterinairoDetailUnroutedComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.id);
     this.getOne();
+
   }
 
   getOne(): void {

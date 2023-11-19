@@ -81,10 +81,8 @@ export class MascotaFormUnroutedComponent implements OnInit {
         })
 
       } else {
-        console.log("entra en else");
         this.oMascotaAjaxService.updateOne(this.mascotaForm.value).subscribe({
           next: (data: IMascota) => {
-            console.log("entra en el this del else");
             this.oMascota = data;
             this.initializeForm(this.oMascota);
             // avisar al usuario que se ha actualizado correctamente
@@ -92,7 +90,6 @@ export class MascotaFormUnroutedComponent implements OnInit {
             this.oRouter.navigate(['/mascota', 'view', this.oMascota.id]);
           },
           error: (error: HttpErrorResponse) => {
-            console.log("entra en error del else");
             this.status = error;
             this.oMatSnackBar.open("Can't update pet.", '', { duration: 2000 });
           }

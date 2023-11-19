@@ -1,12 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ICita, IMascota, formOperation } from 'src/app/model/model.interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { Subject } from 'rxjs';
+import { ICita, IMascota, IVeterinario, formOperation } from 'src/app/model/model.interfaces';
 import { CitaAjaxService } from 'src/app/service/cita.ajax.service';
-import { MascotaSelectionUnroutedComponent } from '../../mascota/mascota-selection-unrouted/mascota-selection-unrouted.component';
+import { VeterinarioSelectionUnroutedComponent } from '../../veterinario/veterinario-selection-unrouted/veterinario-selection-unrouted.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CALENDAR_ES } from 'src/environment/environment';
+import { MascotaSelectionUnroutedComponent } from '../../mascota/mascota-selection-unrouted/mascota-selection-unrouted.component';
 
 @Component({
   selector: 'app-user-cita-form-unrouted',
@@ -14,62 +18,41 @@ import { CALENDAR_ES } from 'src/environment/environment';
   styleUrls: ['./user-cita-form-unrouted.component.css']
 })
 export class UserCitaFormUnroutedComponent implements OnInit {
+ 
+  @Input() id: number = 1;
+  @Input() operation: formOperation = 'NEW'; //new or edit
 
+  es = CALENDAR_ES;
 
   citaForm!: FormGroup;
   oCita: ICita = { fecha: new Date(Date.now()), veterinario: {}, mascota: {} } as ICita;
   status: HttpErrorResponse | null = null;
-  //---
-  id: number = 0;
-  id_mascota: number = 0;
-  operation: formOperation = 'NEW'; // new or edit
-  oRouter: any;
 
-  es = CALENDAR_ES;
+  oDynamicDialogRef: DynamicDialogRef | undefined;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private oFormBuilder: FormBuilder,
     private oCitaAjaxService: CitaAjaxService,
-    private matSnackBar: MatSnackBar,
-    public oDialogService: DialogService,
-    public oDynamicDialogRef: DynamicDialogRef,
-    public oDynamicDialogConfig: DynamicDialogConfig
+    private oRouter: Router,
+    private oMatSnackBar: MatSnackBar,
+    public oDialogService: DialogService
   ) {
-    if (oDynamicDialogConfig) {
-      if (oDynamicDialogConfig.data) {
-        if (oDynamicDialogConfig.data.id) {
-          this.oCita.id = oDynamicDialogConfig.data.id;
-        } else {
-          this.oCita.id = 0;
-        }
-        if (oDynamicDialogConfig.data.id_mascota) {
-          this.oCita.mascota = { id: oDynamicDialogConfig.data.id_mascota } as IMascota;
-        } else {
-          this.oCita.mascota = {} as IMascota;
-        }
-        if (oDynamicDialogConfig.data.operation) {
-          this.operation = oDynamicDialogConfig.data.operation;
-        } else {
-          this.operation = 'NEW';
-        }
-      }
-    }
     this.initializeForm(this.oCita);
-
   }
 
   initializeForm(oCita: ICita) {
-    this.citaForm = this.formBuilder.group({
+    this.citaForm = this.oFormBuilder.group({
       id: [oCita.id],
       fecha: [new Date(oCita.fecha), [Validators.required]],
-      veterinario: this.formBuilder.group({
+      veterinario: this.oFormBuilder.group({
         id: [oCita.veterinario.id, Validators.required]
       }),
-      mascota: this.formBuilder.group({
+      mascota: this.oFormBuilder.group({
         id: [oCita.mascota.id, Validators.required]
       })
     });
   }
+
   ngOnInit() {
     if (this.operation == 'EDIT') {
       this.oCitaAjaxService.getOne(this.id).subscribe({
@@ -79,7 +62,7 @@ export class UserCitaFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.matSnackBar.open("Error reading appointment from server.", '', { duration: 2000 });
+          this.oMatSnackBar.open("Error reading appointment from server.", '', { duration: 2000 });
         }
       })
     } else {
@@ -87,21 +70,21 @@ export class UserCitaFormUnroutedComponent implements OnInit {
     }
   }
 
-
   public hasError = (controlName: string, errorName: string) => {
     return this.citaForm.controls[controlName].hasError(errorName);
   }
+
 
   onSubmit() {
     if (this.citaForm.valid) {
       if (this.operation == 'NEW') {
         this.oCitaAjaxService.newOne(this.citaForm.value).subscribe({
           next: (data: ICita) => {
-            this.oCita = { "veterinario" : {}, "mascota" : {}} as ICita;
+            this.oCita = data;
             this.initializeForm(this.oCita);
             
             console.log('Datos a enviar:', this.citaForm.value);
-            this.matSnackBar.open("The appointment has been created.", '', { duration: 2000 });
+            this.oMatSnackBar.open("The appointment has been created.", '', { duration: 2000 });
 
             // Verifica si 'id' está definido antes de navegar
             if (this.oCita.id !== null && this.oCita.id !== undefined) {
@@ -112,7 +95,7 @@ export class UserCitaFormUnroutedComponent implements OnInit {
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't create the appointment.", '', { duration: 2000 });
+            this.oMatSnackBar.open("Can't create the appointment.", '', { duration: 2000 });
           }
         });
       } else {
@@ -121,16 +104,34 @@ export class UserCitaFormUnroutedComponent implements OnInit {
             this.oCita = data;
             this.initializeForm(this.oCita);
             // avisar al usuario que se ha actualizado correctamente
-            this.matSnackBar.open("The appointment has been updated.", '', { duration: 2000 });
+            this.oMatSnackBar.open("The appointment has been updated.", '', { duration: 2000 });
             this.oRouter.navigate(['/cita', 'view', this.oCita.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't update appointment.", '', { duration: 2000 });
+            this.oMatSnackBar.open("Can't update appointment.", '', { duration: 2000 });
           }
         })
       }
     }
+  }
+
+
+  onShowVetsSelection() {
+    this.oDynamicDialogRef = this.oDialogService.open(VeterinarioSelectionUnroutedComponent, {
+      header: 'Select a Vet',
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.oDynamicDialogRef.onClose.subscribe((oVet: IVeterinario) => {
+      if (oVet) {
+        this.oCita.veterinario = oVet;
+        this.citaForm.controls['veterinario'].patchValue({ id: oVet.id })
+      }
+    });
   }
 
   onShowPetsSelection() {
@@ -149,4 +150,5 @@ export class UserCitaFormUnroutedComponent implements OnInit {
       }
     });
   }
+
 }

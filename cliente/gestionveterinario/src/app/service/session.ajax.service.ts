@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
 import { VeterinarioAjaxService } from './veterinario.ajax.service';
+import { VeterinairoDetailUnroutedComponent } from '../components/veterinario/veterinairo-detail-unrouted/veterinairo-detail-unrouted.component';
 
 
 export interface SessionEvent {
@@ -27,7 +28,7 @@ export class SessionAjaxService {
 
     constructor(
         private oHttpClient: HttpClient,
-        private oVeterinarioAjaxService: VeterinarioAjaxService
+        private oVeterinarioAjaxService: VeterinarioAjaxService, 
     ) { }
 
     private parseJwt(token: string): IToken {
@@ -83,7 +84,10 @@ export class SessionAjaxService {
             return "";
         }
     }
-
+    
+    
+      
+    
     on(): Observable<SessionEvent> {
         return this.subjectSession.asObservable();
     }
@@ -91,4 +95,25 @@ export class SessionAjaxService {
     emit(event: SessionEvent) {
         this.subjectSession.next(event);
     }
+
+    getVetId(): number {
+        if (this.isSessionActive()) {
+          let token: string | null = localStorage.getItem('token');
+          if (token) {
+            const parsedToken = this.parseJwt(token);
+            if (parsedToken && parsedToken.name) {
+              const vetId = parseInt(parsedToken.name);
+              return isNaN(vetId) ? 0 : vetId;
+            } else {
+              console.error('Nombre (ID) no encontrado en el token:', parsedToken);
+            }
+          } else {
+            console.error('Token no encontrado en el almacenamiento local.');
+          }
+        } else {
+          console.error('La sesión no está activa.');
+        }
+      
+        return 0;
+      }
 }

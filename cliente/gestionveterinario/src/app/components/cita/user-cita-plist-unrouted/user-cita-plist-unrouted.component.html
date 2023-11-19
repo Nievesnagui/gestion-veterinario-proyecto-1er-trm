@@ -8,13 +8,12 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between">
-    <button type="button" class="btn btn-outline-primary" (click)="postNewMascota()"
-      *ngIf="oSessionService.isSessionActive()">Post new pet</button>
     <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} appontments</h5>
     <button type="button" class="btn btn-outline-primary" (click)="postNewCita()"
       *ngIf="oSessionService.isSessionActive()">Post new appointment</button>
   </div>
-  <div class="d-flex justify-content-center m-1">
+  <br>
+ <div class="d-flex justify-content-center m-1">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="" [showPageLinks]="false"></p-paginator>
   </div>

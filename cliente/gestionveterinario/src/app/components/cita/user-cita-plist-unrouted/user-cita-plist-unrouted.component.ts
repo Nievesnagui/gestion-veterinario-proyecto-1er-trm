@@ -10,8 +10,8 @@ import { MascotaAjaxService } from 'src/app/service/mascota.ajax.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service';
 import { VeterinarioAjaxService } from 'src/app/service/veterinario.ajax.service';
 import { CitaDetailUnroutedComponent } from '../cita-detail-unrouted/cita-detail-unrouted.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CitaFormUnroutedComponent } from '../cita-form-unrouted/cita-form-unrouted.component';
-import { MascotaFormUnroutedComponent } from '../../mascota/mascota-form-unrouted/mascota-form-unrouted.component';
 
 @Component({
   selector: 'app-user-cita-plist-unrouted',
@@ -48,12 +48,12 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
 
   @Output() cita_change = new EventEmitter<Boolean>();
 
-  id_mascota_filter: number = 0; //filter by thread
-  id_veterinario_filter: number = 0; //filter by thread
+  id_mascota_filter: number = 0; 
+  id_veterinario_filter: number = 0; 
 
   oPage: ICitaPage | undefined;
-  oVeterinario: IVeterinario | null = null; // data of user if id_user is set for filter
-  oMascota: IMascota | null = null; // data of thread if id_thread is set for filter
+  oVeterinario: IVeterinario | null = null; 
+  oMascota: IMascota | null = null; 
   orderField: string = "id";
   orderDirection: string = "desc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -69,8 +69,24 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
     private oConfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
   ) { }
-
+  citaForm: FormGroup = new FormGroup({
+    fecha: new FormControl(null, [Validators.required]), // Ajusta los validators según tus necesidades
+    veterinario: new FormGroup({
+      id: new FormControl(null, [Validators.required])
+    }),
+    mascota: new FormGroup({
+      id: new FormControl(null, [Validators.required])
+    })
+  });
   ngOnInit() {
+    
+    const idVeterinarioConectado = this.oSessionService.getVetId();
+    if (idVeterinarioConectado) {
+      // Establecer el ID del veterinario conectado en el formulario
+      this.citaForm.get('veterinario.id')?.setValue(idVeterinarioConectado);
+      console.log(idVeterinarioConectado);
+    }
+
     this.getPage();
     if (this.id_veterinario > 0) {
       this.getVeterinario();
@@ -161,8 +177,7 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
   }
 
   postNewCita(): void {
-    if (this.id_mascota_filter > 0 && this.oSessionService.isSessionActive()) {
-
+    if (this.oSessionService.isSessionActive()) {
       this.ref = this.oDialogService.open(CitaFormUnroutedComponent, {
         data: {
           id_thread: this.id_mascota_filter,
@@ -181,26 +196,13 @@ export class UserCitaPlistUnroutedComponent implements OnInit {
     }
   }
 
-
-
-  postNewMascota(): void {
-    if (this.id_mascota_filter > 0 && this.oSessionService.isSessionActive()) {
-
-      this.ref = this.oDialogService.open(MascotaFormUnroutedComponent, {
-        data: {
-          id_mascota: this.id_mascota_filter,
-        },
-        header: 'Post a new pet',
-        width: '70%',
-        contentStyle: { overflow: 'auto' },
-        baseZIndex: 10000,
-        maximizable: false
-      });
-
-      this.ref.onClose.subscribe((nThread: number) => {
-        this.getPage();
-        this.cita_change.emit(true);
-      });
-    }
+  viewAllAppointment(): void {
+    this.id_veterinario_filter = 0;
+    this.id_mascota_filter = 0;
+    this.getPage();
   }
+
+
+
+  
 }
