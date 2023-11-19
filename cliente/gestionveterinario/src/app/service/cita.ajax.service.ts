@@ -22,11 +22,11 @@ export class CitaAjaxService {
         if (!page) page = 0;
         let strUrlVet = "";
         if (id_veterinario > 0) {
-            strUrlVet = "&veterinario=" + id_veterinario;
+            strUrlVet = "&id_veterinario=" + id_veterinario;
         }
         let strUrlPet = "";
         if (id_mascota > 0) {
-            strUrlPet = "&mascota=" + id_mascota;
+            strUrlPet = "&id_mascota=" + id_mascota;
         }
 
         return this.oHttpClient.get<ICitaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlVet + strUrlPet);

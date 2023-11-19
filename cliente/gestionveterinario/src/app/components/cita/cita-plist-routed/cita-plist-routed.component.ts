@@ -25,9 +25,11 @@ export class CitaPlistRoutedComponent implements OnInit {
     private oCitaAjaxService: CitaAjaxService,
     private oMatSnackBar: MatSnackBar
   ) {
-    this.id_veterinario = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id_veterinario") ?? "0");
-    this.id_mascota = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id_mascota") ?? "0");
-   }
+    this.id_veterinario = parseInt(this.oActivatedRoute.snapshot.params['id_veterinario'] ?? "0");
+    this.id_mascota = parseInt(this.oActivatedRoute.snapshot.params['id_mascota'] ?? "0");
+    console.log('id_veterinario:', this.id_veterinario);
+    console.log('id_mascota:', this.id_mascota);
+  }
 
   ngOnInit() { }
 
