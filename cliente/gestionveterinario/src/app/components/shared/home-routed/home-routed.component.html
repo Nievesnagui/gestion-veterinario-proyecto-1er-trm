@@ -1,46 +1,73 @@
 <div class="fondo px-3 py-4">
-<div class="container-fluid px-5">
+  <div class="container-fluid px-5">
+    <div *ngIf="oSessionUser==null">
+      <div class="row align-items-start">
+        <div class="col-xxl-12 text-center p-3 mt-2 card border-light mb-3">
+          <div class="card-header">PurrfectCare Veterinary</div>
+          <div class="card-body">
+            <h4 class="card-title">¡Bienvenido a PurrfectCare Veterinary!</h4>
+            <p class="card-text">¡Te has topado con la página oficial para profesionales!</p>
+            <p class="card-text">Si eres un cliente que busca registrar a su maravillosa mascota en nuestro fantástico
+              veterinario o que quiere pedir cita, llama al número de teléfono falso que se ve a continuación:</p>
+            <p class="card-text">+34 611111111</p>
+          </div>
+        </div>
+        <div class="col-xxl-12 text-center p-3 mt-2 card border-light mb-3">
+          <div class="card-header">Horario</div>
+          <div class="card-body">
+            <h4 class="card-title">Lunes a viernes:</h4>
+            <p class="card-text"> 8:00 AM - 6:00 PM: Consultas y procedimientos</p>
+            <h4 class="card-title">Sábados:</h4>
+            <p class="card-text">9:00 AM - 5:00 PM: Consultas y cirugías programadas</p>
+            <h4 class="card-title">Domingos: sólo urgencias</h4>
+            <p class="card-text">Fuera de este horario se tratará como horario de urgencias.</p>
+          </div>
+        </div>
+        <div class="col-xxl-12 text-center p-3 mt-2 card border-light mb-3">
+          <div class="card-header">PurrfectCare Veterinary</div>
+          <div class="card-body">
+            <h4 class="card-title">Si por el contrario eres un profesional de nuestra clínica:</h4>
+            <p class="card-text">Haz click en "login", si aún no tienes tu contraseña, corre a pedírsela a un superior,
+              si
+              necesitas gestionar algo que tu perfil no lo permita, como has leído antes: ¡no dudes en preguntar a un
+              superior!</p>
+            <p class="card-text">Ten un grandioso día ciudando de estos preciosos animales <svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+                viewBox="0 0 16 16">
+                <path
+                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+              </svg></p>
+          </div>
 
-  <div class="row align-items-start">
-    <div class="col-xxl-12 text-center p-3 mt-2 card border-light mb-3" *ngIf="oSessionUser==null">
-      <div class="card-header">PurrfectCare Veterinary</div>
-      <div class="card-body">
-        <h4 class="card-title">¡Bienvenido a PurrfectCare Veterinary!</h4>
-        <p class="card-text">¡Te has topado con la página oficial para profesionales!</p>
-        <p class="card-text">Si eres un cliente que busca registrar a su maravillosa mascota en nuestro fantástico veterinario o que quiere pedir cita, llama al número de teléfono falso que se ve a continuación:</p>
-        <p class="card-text">+34 611111111</p>
+        </div>
       </div>
     </div>
-    <div class="col-xxl-12 text-center p-3 mt-2 card border-light mb-3" *ngIf="oSessionUser==null">
-      <div class="card-header">Horario</div>
-      <div class="card-body">
-        <h4 class="card-title">Lunes a viernes:</h4>
-        <p class="card-text"> 8:00 AM - 6:00 PM: Consultas y procedimientos</p>
-        <h4 class="card-title">Sábados:</h4>
-        <p class="card-text">9:00 AM - 5:00 PM: Consultas y cirugías programadas</p>
-        <h4 class="card-title">Domingos: sólo urgencias</h4>
-        <p class="card-text">Fuera de este horario se tratará como horario de urgencias.</p>
+
+
+    <div *ngIf="oSessionUser!=null" class="row">
+      <div class="col-6 order-1">
+        <app-user-cita-plist-unrouted [id_mascota]="id_mascota"
+          (reply_change)="onReplyChange(true)"></app-user-cita-plist-unrouted>
+      </div>
+      <div class="col-6 order-2 text-center p-3 mt-5  mb-3">
+        <div class="card border-light">
+          <div class="card-header">Tips para novatos</div>
+          <div class="card-body">
+            <h4 class="card-title">Borrando citas</h4>
+            <p class="card-text">Recuerda rellenar todo el papeleo posterior, todo debe estar organizado. Los demás no
+              pueden saber lo que tú has hecho.</p>
+            <p class="card-text">Si acabas de realizar la cita, ¡no la borres! Debe estar ahí para que sepamos que se ha
+              hecho.</p>
+          </div>
+        </div>
+        <div class="card border-light mt-4">
+          <div class="card-header">Tips para novatos</div>
+          <div class="card-body">
+            <h4 class="card-title">Más funcionalidad</h4>
+            <p class="card-text">Si quieres encontrar más funcionalidad en la app debes esperar a hacer pasado el
+              periodo de prueba en la clínica.</p>
+            <p class="card-text">¡Con trabajo bien hecho seguro que lo logras, mucho ánimo!</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-xxl-12 text-center p-3 mt-2 card border-light mb-3" *ngIf="oSessionUser==null">
-      <div class="card-header">PurrfectCare Veterinary</div>
-      <div class="card-body">
-        <h4 class="card-title">Si por el contrario eres un profesional de nuestra clínica:</h4>
-        <p class="card-text">Haz click en "login", si aún no tienes tu contraseña, corre a pedírsela a un superior, si necesitas gestionar algo que tu perfil no lo permita, como has leído antes: ¡no dudes en preguntar a un superior!</p>
-        <p class="card-text">Ten un grandioso día ciudando de estos preciosos animales <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-        </svg></p>
-      </div>
-    </div>
-
-    
-  </div>
-  <div class="row align-items-start">
-    <div class="col-sm-9 " *ngIf="oSessionUser!=null">
-      <app-user-cita-plist-unrouted [id_mascota]="id_mascota"
-        (reply_change)="onReplyChange(true)"></app-user-cita-plist-unrouted>
-    </div>
-  </div>
-
-
-</div>
