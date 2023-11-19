@@ -26,21 +26,28 @@ public class MascotaService {
     SessionService oSessionService;
 
     public MascotaEntity get(Long id) {
+        oSessionService.onlyAdmins();
+
         return oMascotaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
     }
 
     public MascotaEntity create(MascotaEntity oMascotaEntity) {
+        oSessionService.onlyAdmins();
+
         oMascotaEntity.setId(null);
         return oMascotaRepository.save(oMascotaEntity);
     }
 
     public MascotaEntity getOneRandom() {
         oSessionService.onlyAdmins();
+
+        oSessionService.onlyAdmins();
         Pageable oPageable = PageRequest.of((int) (Math.random() * oMascotaRepository.count()), 1);
         return oMascotaRepository.findAll(oPageable).getContent().get(0);
     }
 
     public MascotaEntity update(MascotaEntity oMascotaEntity) {
+        oSessionService.onlyAdmins();
 
         MascotaEntity oMascotaEntityAux = oMascotaRepository.findById(oMascotaEntity.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
@@ -58,6 +65,8 @@ public class MascotaService {
     }
 
     public MascotaEntity delete(Long id) {
+        oSessionService.onlyAdmins();
+
         MascotaEntity oMascotaEntityAux = oMascotaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Mascota not found"));
         oMascotaRepository.deleteById(id);
@@ -65,13 +74,19 @@ public class MascotaService {
     }
 
     public Page<MascotaEntity> getPage(Pageable oPageable) {
+        oSessionService.onlyAdminsOrUsers();
+
         return oMascotaRepository.findAll(oPageable);
     }
-/* 
-    public Page<MascotaEntity> getPageByCitasNumberDesc(Pageable oPageable) {
-        return oMascotaRepository.findPetsByCitasNumberDesc(oPageable);
-    } */
+
+    /*
+     * public Page<MascotaEntity> getPageByCitasNumberDesc(Pageable oPageable) {
+     * return oMascotaRepository.findPetsByCitasNumberDesc(oPageable);
+     * }
+     */
     public Long populate(Integer amount) {
+        oSessionService.onlyAdmins();
+
         for (int i = 0; i < amount; i++) {
 
             String name = DataGenerationHelper.getRadomMascota();

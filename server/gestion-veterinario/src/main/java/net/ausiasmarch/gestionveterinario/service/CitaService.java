@@ -26,15 +26,19 @@ public class CitaService {
     SessionService oSessionService;
 
     public CitaEntity get(Long id) {
+        oSessionService.onlyAdminsOrUsers();
         return oCitaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
     }
 
     public CitaEntity create(CitaEntity oCitaEntity) {
+        oSessionService.onlyAdmins();
+
         oCitaEntity.setId(null);
         return oCitaRepository.save(oCitaEntity);
     }
 
     public CitaEntity update(CitaEntity oCitaEntity) {
+        oSessionService.onlyAdmins();
 
         CitaEntity oCitaEntityAux = oCitaRepository.findById(oCitaEntity.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
@@ -50,6 +54,8 @@ public class CitaService {
     }
 
     public CitaEntity delete(Long id) {
+        oSessionService.onlyAdminsOrUsersWithIisOwnData(id);
+
         CitaEntity oCitaEntityAux = oCitaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Cita not found"));
         oCitaRepository.deleteById(id);
@@ -57,6 +63,8 @@ public class CitaService {
     }
 
     public Page<CitaEntity> getPage(Pageable oPageable, Long id_veterinario, Long id_mascota) {
+        oSessionService.onlyAdminsOrUsers();
+      
         if (id_veterinario == null) {
             if (id_mascota == null) {
                 return oCitaRepository.findAll(oPageable);
@@ -69,6 +77,8 @@ public class CitaService {
     }
 
     public Long populate(Integer amount) {
+        oSessionService.onlyAdmins();
+
         for (int i = 0; i < amount; i++) {
             oCitaRepository.save(new CitaEntity(
                     oVeterinarioService.getOneRandom(), oMascotaService.getOneRandom(),

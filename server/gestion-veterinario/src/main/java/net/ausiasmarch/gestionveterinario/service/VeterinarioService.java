@@ -28,11 +28,15 @@ public class VeterinarioService {
     private final String genericPasswd = "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e";
 
     public VeterinarioEntity get(Long id) {
+        oSessionService.onlyAdminsOrUsers();
+
         return oVeterinarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Veterinario not found"));
     }
 
     public VeterinarioEntity getByUsername(String username) {
+        oSessionService.onlyAdminsOrUsers();
+
         return oVeterinarioRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found by username"));
     }
@@ -42,12 +46,12 @@ public class VeterinarioService {
         oVeterinarioEntity.setId(null);
         oVeterinarioEntity.setPassword(genericPasswd);
         return oVeterinarioRepository.save(oVeterinarioEntity).getId();
-        // tenia esto antes: return oVeterinarioRepository.save(oVeterinarioEntity);
 
     }
 
     public VeterinarioEntity update(VeterinarioEntity oVeterinarioEntity) {
 
+        oSessionService.onlyAdmins();
         
           VeterinarioEntity oVeterinarioEntityAux =
           oVeterinarioRepository.findById(oVeterinarioEntity.getId())
@@ -65,16 +69,6 @@ public class VeterinarioService {
    
 
     }
-    /*
-     * public VeterinarioEntity delete(Long id) {
-     * VeterinarioEntity oVeterinarioEntityAux = oVeterinarioRepository.findById(id)
-     * .orElseThrow(() -> new ResourceNotFoundException("Veterinario not found"));
-     * oVeterinarioRepository.deleteById(id);
-     * return oVeterinarioEntityAux;
-     * }
-     */
-
-    /* Este es copiado del suyo nuevo */
     public Long delete(Long id) {
        oSessionService.onlyAdmins();
         oVeterinarioRepository.deleteById(id);
@@ -93,6 +87,8 @@ public class VeterinarioService {
     }
 
     public Page<VeterinarioEntity> getPageByCitasNumberDesc(Pageable oPageable) {
+        oSessionService.onlyAdminsOrUsers();
+
         return oVeterinarioRepository.findVetssByCitasNumberDescFilter(oPageable);
     }
 
